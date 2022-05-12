@@ -1,10 +1,15 @@
 import React from 'react'
+import { Container } from 'react-bootstrap'
+import NavBarComponent from './components/NavBarComponent'
 
 const App = () => {
   return (
-    <div>
-      <h1>React app</h1>
-    </div>
+    <Container
+      fluid
+      className='g-0'
+    >
+      <NavBarComponent />
+    </Container>
   )
 }
 
