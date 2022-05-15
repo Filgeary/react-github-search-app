@@ -1,12 +1,12 @@
 import React from 'react'
 import { Container } from 'react-bootstrap'
 
-const SearchPage = () => {
+const ProfilePage = () => {
   return (
     <Container>
-      <h1>Search</h1>
+      <h1>Profile</h1>
     </Container>
   )
 }
 
-export default SearchPage
+export default ProfilePage
