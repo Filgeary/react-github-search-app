@@ -1,5 +1,6 @@
 import React from 'react'
 import { Container, Nav, Navbar } from 'react-bootstrap'
+import { LinkContainer } from 'react-router-bootstrap'
 
 const NavBarComponent = () => {
   return (
@@ -7,11 +8,26 @@ const NavBarComponent = () => {
       bg='dark'
       variant='dark'
     >
-      <Container className='px-5'>
-        <Navbar.Brand href='/'>Github Search</Navbar.Brand>
+      <Container>
         <Nav className='me-auto'>
-          <Nav.Link href='/search'>Search</Nav.Link>
-          <Nav.Link href='/about'>About</Nav.Link>
+          <LinkContainer
+            to='/'
+            exact
+          >
+            <Nav.Link className='navbar-brand active'>Github Search</Nav.Link>
+          </LinkContainer>
+          <LinkContainer
+            to='/'
+            exact
+          >
+            <Nav.Link>Home</Nav.Link>
+          </LinkContainer>
+          <LinkContainer
+            to='/about'
+            exact
+          >
+            <Nav.Link>About</Nav.Link>
+          </LinkContainer>
         </Nav>
       </Container>
     </Navbar>
