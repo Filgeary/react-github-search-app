@@ -1,9 +1,25 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { FloatingLabel, Form } from 'react-bootstrap'
+import AlertComponent from './AlertComponent'
 
 const Search = () => {
+  const [isInputValue, setIsInputValue] = useState(true)
+
+  const formatInputValue = evt => evt.target.value.trim().toLowerCase()
+
+  const onChange = evt => {
+    const value = formatInputValue(evt)
+
+    if (value) {
+      setIsInputValue(true)
+      console.log(value)
+    } else {
+      setIsInputValue(false)
+    }
+  }
+
   return (
-    <Form>
+    <>
       <Form.Group>
         <FloatingLabel
           label='Type here...'
@@ -12,11 +28,18 @@ const Search = () => {
           <Form.Control
             type='text'
             placeholder='react'
-            onChange={evt => console.log(evt.target.value)}
+            onChange={onChange}
           />
         </FloatingLabel>
       </Form.Group>
-    </Form>
+
+      {!isInputValue && (
+        <AlertComponent
+          variant='danger'
+          heading='Empty Search!'
+        />
+      )}
+    </>
   )
 }
 
