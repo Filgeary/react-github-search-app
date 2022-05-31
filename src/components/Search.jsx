@@ -2,8 +2,15 @@ import React from 'react'
 import { FloatingLabel, Form } from 'react-bootstrap'
 
 const Search = () => {
+  const formatInputValue = evt => evt.target.value.trim().toLowerCase()
+
+  const onChange = evt => {
+    const value = formatInputValue(evt)
+    if (value) console.log(value)
+  }
+
   return (
-    <Form>
+    <Form onSubmit={evt => evt.preventDefault()}>
       <Form.Group>
         <FloatingLabel
           label='Type here...'
@@ -12,7 +19,7 @@ const Search = () => {
           <Form.Control
             type='text'
             placeholder='react'
-            onChange={evt => console.log(evt.target.value)}
+            onChange={onChange}
           />
         </FloatingLabel>
       </Form.Group>
