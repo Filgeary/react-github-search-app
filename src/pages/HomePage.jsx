@@ -5,6 +5,8 @@ import CardComponent from '../components/CardComponent'
 import AlertComponent from '../components/AlertComponent'
 
 const HomePage = () => {
+  const logger = text => console.log(text)
+
   return (
     <Container>
       <Stack gap={4}>
@@ -15,7 +17,7 @@ const HomePage = () => {
           heading='Info Message'
           text='Type below to search anything 👇'
         />
-        <Search />
+        <Search onChangeInput={logger} />
         <CardComponent />
       </Stack>
     </Container>
