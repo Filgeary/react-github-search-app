@@ -1,8 +1,7 @@
 import React from 'react'
 import { Container, Stack } from 'react-bootstrap'
-import Search from '../components/Search'
-import CardComponent from '../components/CardComponent'
 import AlertComponent from '../components/AlertComponent'
+import UserSearchContainer from '../containers/UserSearchContainer'
 
 const HomePage = () => {
   return (
@@ -15,8 +14,7 @@ const HomePage = () => {
           heading='Info Message'
           text='Type below to search anything 👇'
         />
-        <Search />
-        <CardComponent />
+        <UserSearchContainer />
       </Stack>
     </Container>
   )
