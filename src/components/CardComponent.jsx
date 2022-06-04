@@ -1,30 +1,28 @@
 import React from 'react'
-import { Button, Card, Col, Row } from 'react-bootstrap'
+import { Button, Card, Col } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 
-const CardComponent = () => {
+const CardComponent = ({ item }) => {
+  const { avatar_url, login, type } = item
+
   return (
-    <Row
-      md={4}
-      className='g-4'
-    >
-      <Col>
-        <Card>
-          <Card.Img
-            style={{ minWidth: 160, minHeight: 160 }}
-            variant='top'
-            src='https://via.placeholder.com/300'
-          />
-          <Card.Body>
-            <Card.Title>Card Title</Card.Title>
-            <Card.Text>The quick brown fox jumps over the lazy dog</Card.Text>
-            <LinkContainer to={`/profile/react`}>
-              <Button variant='primary'>Read More</Button>
-            </LinkContainer>
-          </Card.Body>
-        </Card>
-      </Col>
-    </Row>
+    <Col>
+      <Card>
+        <Card.Img
+          style={{ minWidth: 160, minHeight: 160 }}
+          variant='top'
+          src={avatar_url}
+          alt={login}
+        />
+        <Card.Body>
+          <Card.Title>{login}</Card.Title>
+          <Card.Text>{type}</Card.Text>
+          <LinkContainer to={`/profile/${login}`}>
+            <Button variant='primary'>Read More</Button>
+          </LinkContainer>
+        </Card.Body>
+      </Card>
+    </Col>
   )
 }
 
