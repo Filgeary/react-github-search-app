@@ -1,12 +1,9 @@
 import React from 'react'
 import { Container, Stack } from 'react-bootstrap'
-import Search from '../components/Search'
-import CardComponent from '../components/CardComponent'
 import AlertComponent from '../components/AlertComponent'
+import UserSearchContainer from '../containers/UserSearchContainer'
 
 const HomePage = () => {
-  const logger = text => console.log(text)
-
   return (
     <Container>
       <Stack gap={4}>
@@ -17,8 +14,7 @@ const HomePage = () => {
           heading='Info Message'
           text='Type below to search anything 👇'
         />
-        <Search onChangeInput={logger} />
-        <CardComponent />
+        <UserSearchContainer />
       </Stack>
     </Container>
   )
