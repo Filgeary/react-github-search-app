@@ -18,10 +18,22 @@ const UserSearchContainer = () => {
     refetch,
   } = useGetUsers(userQuery, pageCount)
 
+  const hasNextPage = responseData?.headers?.['link']?.includes('rel="next"')
+
   const handleChangeSearch = user => {
     setUserQuery(user)
     setPageCount(1)
     setTimeout(() => refetch().then(() => console.log('Refetch, User')), 0)
+  }
+
+  const handleClickPrevPage = () => {
+    setPageCount(prevState => prevState - 1)
+    setTimeout(() => refetch().then(() => console.log('Page - 1')), 0)
+  }
+
+  const handleClickNextPage = () => {
+    setPageCount(prevState => prevState + 1)
+    setTimeout(() => refetch().then(() => console.log('Page + 1')), 0)
   }
 
   return (
@@ -64,13 +76,11 @@ const UserSearchContainer = () => {
               <p>Current Page: {pageCount}</p>
 
               <Button
-                className='mx-3'
-                variant='secondary'
+                className='mx-4'
+                variant='info'
+                size='lg'
                 type='button'
-                onClick={() => {
-                  setPageCount(prevState => prevState - 1)
-                  setTimeout(() => refetch().then(() => console.log('Page')), 0)
-                }}
+                onClick={handleClickPrevPage}
                 disabled={isFetching || pageCount === 1}
               >
                 {isFetching && (
@@ -81,19 +91,14 @@ const UserSearchContainer = () => {
                     variant='primary'
                   />
                 )}{' '}
-                {isFetching ? 'Loading.....' : '⬅ Prev Page'}
+                {isFetching ? 'Loading...' : '⬅ Back'}
               </Button>
               <Button
-                variant='secondary'
+                variant='info'
+                size='lg'
                 type='button'
-                onClick={() => {
-                  setPageCount(prevState => prevState + 1)
-                  setTimeout(() => refetch().then(() => console.log('Page')), 0)
-                }}
-                disabled={
-                  isFetching ||
-                  !responseData.headers['link']?.includes('rel="next"')
-                }
+                onClick={handleClickNextPage}
+                disabled={isFetching || !hasNextPage}
               >
                 {isFetching && (
                   <Spinner
@@ -103,7 +108,7 @@ const UserSearchContainer = () => {
                     variant='primary'
                   />
                 )}{' '}
-                {isFetching ? 'Loading.....' : 'Next Page ➡'}
+                {isFetching ? 'Loading...' : 'Next ➡'}
               </Button>
             </Container>
           </>
