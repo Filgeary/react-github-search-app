@@ -16,3 +16,11 @@ export const getUsers = async (user, page = '1') => {
   )
   return { data, headers }
 }
+
+export const getUser = async user => {
+  return await githubApi.get(`/users/${user}`)
+}
+
+export const getReposByUser = async user => {
+  return await githubApi.get(`/users/${user}/repos`)
+}
