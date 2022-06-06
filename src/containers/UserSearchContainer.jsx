@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import Search from '../components/Search'
 import CardComponent from '../components/CardComponent'
-import { Button, Container, Row, Spinner } from 'react-bootstrap'
+import { Row, Spinner } from 'react-bootstrap'
 import { useGetUsers } from '../hooks/useGetUsers'
 import AlertComponent from '../components/AlertComponent'
+import { PaginationComponent } from '../components/PaginationComponent'
 
 const UserSearchContainer = () => {
   const [userQuery, setUserQuery] = useState('')
@@ -19,6 +20,7 @@ const UserSearchContainer = () => {
   } = useGetUsers(userQuery, pageCount)
 
   const hasNextPage = responseData?.headers?.['link']?.includes('rel="next"')
+  const hasData = responseData?.data?.items?.length
 
   const handleChangeSearch = user => {
     setUserQuery(user)
@@ -62,7 +64,7 @@ const UserSearchContainer = () => {
               md={4}
               className='g-4 justify-content-center'
             >
-              {responseData.data.items.map(item => {
+              {responseData.data?.items?.map(item => {
                 return (
                   <CardComponent
                     item={item}
@@ -72,45 +74,21 @@ const UserSearchContainer = () => {
               })}
             </Row>
 
-            <Container className='text-center'>
-              <p>Current Page: {pageCount}</p>
-
-              <Button
-                className='mx-4'
-                variant='info'
-                size='lg'
-                type='button'
-                onClick={handleClickPrevPage}
-                disabled={isFetching || pageCount === 1}
-              >
-                {isFetching && (
-                  <Spinner
-                    as='span'
-                    size='sm'
-                    animation='border'
-                    variant='primary'
-                  />
-                )}{' '}
-                {isFetching ? 'Loading...' : '⬅ Back'}
-              </Button>
-              <Button
-                variant='info'
-                size='lg'
-                type='button'
-                onClick={handleClickNextPage}
-                disabled={isFetching || !hasNextPage}
-              >
-                {isFetching && (
-                  <Spinner
-                    as='span'
-                    size='sm'
-                    animation='border'
-                    variant='primary'
-                  />
-                )}{' '}
-                {isFetching ? 'Loading...' : 'Next ➡'}
-              </Button>
-            </Container>
+            {hasData ? (
+              <PaginationComponent
+                pageCount={pageCount}
+                onClickPrevPage={handleClickPrevPage}
+                isFetching={isFetching}
+                onClickNextPage={handleClickNextPage}
+                hasNextPage={hasNextPage}
+              />
+            ) : (
+              <AlertComponent
+                variant='danger'
+                heading='Not Found!'
+                text='Try to change search'
+              />
+            )}
           </>
         )
       )}
