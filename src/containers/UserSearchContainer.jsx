@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import Search from '../components/Search'
 import CardComponent from '../components/CardComponent'
-import { Button, Container, Row, Spinner } from 'react-bootstrap'
+import { Row, Spinner } from 'react-bootstrap'
 import { useGetUsers } from '../hooks/useGetUsers'
 import AlertComponent from '../components/AlertComponent'
+import { PaginationComponent } from '../components/PaginationComponent'
 
 const UserSearchContainer = () => {
   const [userQuery, setUserQuery] = useState('')
@@ -18,10 +19,23 @@ const UserSearchContainer = () => {
     refetch,
   } = useGetUsers(userQuery, pageCount)
 
+  const hasNextPage = responseData?.headers?.['link']?.includes('rel="next"')
+  const hasData = responseData?.data?.items?.length
+
   const handleChangeSearch = user => {
     setUserQuery(user)
     setPageCount(1)
     setTimeout(() => refetch().then(() => console.log('Refetch, User')), 0)
+  }
+
+  const handleClickPrevPage = () => {
+    setPageCount(prevState => prevState - 1)
+    setTimeout(() => refetch().then(() => console.log('Page - 1')), 0)
+  }
+
+  const handleClickNextPage = () => {
+    setPageCount(prevState => prevState + 1)
+    setTimeout(() => refetch().then(() => console.log('Page + 1')), 0)
   }
 
   return (
@@ -50,7 +64,7 @@ const UserSearchContainer = () => {
               md={4}
               className='g-4 justify-content-center'
             >
-              {responseData.data.items.map(item => {
+              {responseData.data?.items?.map(item => {
                 return (
                   <CardComponent
                     item={item}
@@ -60,52 +74,21 @@ const UserSearchContainer = () => {
               })}
             </Row>
 
-            <Container className='text-center'>
-              <p>Current Page: {pageCount}</p>
-
-              <Button
-                className='mx-3'
-                variant='secondary'
-                type='button'
-                onClick={() => {
-                  setPageCount(prevState => prevState - 1)
-                  setTimeout(() => refetch().then(() => console.log('Page')), 0)
-                }}
-                disabled={isFetching || pageCount === 1}
-              >
-                {isFetching && (
-                  <Spinner
-                    as='span'
-                    size='sm'
-                    animation='border'
-                    variant='primary'
-                  />
-                )}{' '}
-                {isFetching ? 'Loading.....' : '⬅ Prev Page'}
-              </Button>
-              <Button
-                variant='secondary'
-                type='button'
-                onClick={() => {
-                  setPageCount(prevState => prevState + 1)
-                  setTimeout(() => refetch().then(() => console.log('Page')), 0)
-                }}
-                disabled={
-                  isFetching ||
-                  !responseData.headers['link']?.includes('rel="next"')
-                }
-              >
-                {isFetching && (
-                  <Spinner
-                    as='span'
-                    size='sm'
-                    animation='border'
-                    variant='primary'
-                  />
-                )}{' '}
-                {isFetching ? 'Loading.....' : 'Next Page ➡'}
-              </Button>
-            </Container>
+            {hasData ? (
+              <PaginationComponent
+                pageCount={pageCount}
+                onClickPrevPage={handleClickPrevPage}
+                isFetching={isFetching}
+                onClickNextPage={handleClickNextPage}
+                hasNextPage={hasNextPage}
+              />
+            ) : (
+              <AlertComponent
+                variant='danger'
+                heading='Not Found!'
+                text='Try to change search'
+              />
+            )}
           </>
         )
       )}
