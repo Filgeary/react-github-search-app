@@ -30,7 +30,11 @@ const UserProfile = ({ user }) => {
   } = user
 
   return (
-    <Card className='p-4'>
+    <Card
+      className='p-4'
+      border='warning'
+      style={{ boxShadow: '5px 5px 4px 0 #ccc' }}
+    >
       <Card.Body>
         <Row>
           <Col
