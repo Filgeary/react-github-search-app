@@ -1,16 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useGetReposByUser } from '../hooks/useGetReposByUser'
 import { Spinner } from 'react-bootstrap'
 import AlertComponent from '../components/AlertComponent'
 import ReposList from '../components/ReposList'
 
 const ReposListContainer = ({ queryId }) => {
+  const [pageCount, setPageCount] = useState(1)
+
   const {
     isLoading,
     isError,
     error,
     data: responseData,
-  } = useGetReposByUser(queryId)
+  } = useGetReposByUser(queryId, pageCount)
   const data = responseData?.data
 
   if (isLoading) {
