@@ -13,6 +13,7 @@ const ReposList = ({ repos }) => {
               id,
               name,
               description,
+              fork,
               stargazers_count,
               topics,
               html_url,
@@ -24,6 +25,17 @@ const ReposList = ({ repos }) => {
                 className='border-bottom pb-3'
               >
                 <div>
+                  {fork && (
+                    <h5 className='d-inline-block'>
+                      <Badge
+                        pill
+                        bg='dark'
+                      >
+                        fork
+                      </Badge>
+                      &nbsp;
+                    </h5>
+                  )}{' '}
                   <NavLink
                     href={html_url}
                     target='_blank'
