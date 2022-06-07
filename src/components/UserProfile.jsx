@@ -31,9 +31,8 @@ const UserProfile = ({ user }) => {
 
   return (
     <Card
-      className='p-4'
-      border='warning'
-      style={{ boxShadow: '5px 5px 4px 0 #ccc' }}
+      className='p-4 mb-2'
+      style={{ boxShadow: '5px 5px 0 0 #ccc' }}
     >
       <Card.Body>
         <Row>
