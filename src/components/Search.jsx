@@ -7,12 +7,12 @@ const Search = ({ onChangeInput }) => {
   const [isInputValue, setIsInputValue] = useState(true)
 
   const formatInputValue = evt => evt.target.value.trim().toLowerCase()
-  const debouncedFunc = debounce(onChangeInput, 500)
+  const debouncedFunc = debounce(onChangeInput, 300)
 
   const onChange = evt => {
     const value = formatInputValue(evt)
 
-    if (value && value.length > 2) {
+    if (value && value.length > 1) {
       setIsInputValue(true)
       debouncedFunc(value)
     } else {
@@ -38,7 +38,7 @@ const Search = ({ onChangeInput }) => {
       {!isInputValue && (
         <AlertComponent
           variant='danger'
-          heading='Need minimum 3 letters OR Empty Search!'
+          heading='Need minimum 2 letters!'
         />
       )}
     </>

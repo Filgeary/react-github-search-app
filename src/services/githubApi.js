@@ -11,8 +11,13 @@ const githubApi = axios.create({
 })
 
 export const getUsers = async (user, page = '1') => {
-  const { data, headers } = await githubApi.get(
-    `/search/users?q=${user}&page=${page}&per_page=10`,
-  )
-  return { data, headers }
+  return await githubApi.get(`/search/users?q=${user}&page=${page}&per_page=10`)
+}
+
+export const getUser = async user => {
+  return await githubApi.get(`/users/${user}`)
+}
+
+export const getReposByUser = async (user, page = '1') => {
+  return await githubApi.get(`/users/${user}/repos?page=${page}&per_page=20`)
 }
