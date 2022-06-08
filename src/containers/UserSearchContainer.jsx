@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Search from '../components/Search'
 import CardComponent from '../components/CardComponent'
 import { Row, Spinner } from 'react-bootstrap'
@@ -22,25 +22,52 @@ const UserSearchContainer = () => {
   const hasNextPage = responseData?.headers?.['link']?.includes('rel="next"')
   const hasData = responseData?.data?.items?.length
 
+  const setUsersQueryParamsToSessionStorage = (query, page) => {
+    window.sessionStorage.setItem('searchUsersQuery', query)
+    window.sessionStorage.setItem('searchUsersPage', page)
+  }
+
+  useEffect(() => {
+    const query = window.sessionStorage.getItem('searchUsersQuery') || ''
+    const page = window.sessionStorage.getItem('searchUsersPage') || ''
+
+    if (query && page) {
+      setUserQuery(query)
+      setPageCount(+page)
+    }
+  }, [])
+
   const handleChangeSearch = user => {
     setUserQuery(user)
     setPageCount(1)
-    setTimeout(() => refetch().then(() => console.log('Refetch, User')), 0)
+    setTimeout(() => {
+      setUsersQueryParamsToSessionStorage(user, 1)
+      refetch().then(() => console.log('Refetch, User'))
+    }, 0)
   }
 
   const handleClickPrevPage = () => {
     setPageCount(prevState => prevState - 1)
-    setTimeout(() => refetch().then(() => console.log('Page - 1')), 0)
+    setTimeout(() => {
+      setUsersQueryParamsToSessionStorage(userQuery, pageCount - 1)
+      refetch().then(() => console.log('Page - 1'))
+    }, 0)
   }
 
   const handleClickNextPage = () => {
     setPageCount(prevState => prevState + 1)
-    setTimeout(() => refetch().then(() => console.log('Page + 1')), 0)
+    setTimeout(() => {
+      setUsersQueryParamsToSessionStorage(userQuery, pageCount + 1)
+      refetch().then(() => console.log('Page + 1'))
+    }, 0)
   }
 
   return (
     <>
-      <Search onChangeInput={user => handleChangeSearch(user)} />
+      <Search
+        onChangeInput={user => handleChangeSearch(user)}
+        query={userQuery}
+      />
 
       {isLoading ? (
         <>

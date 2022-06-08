@@ -1,15 +1,20 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { FloatingLabel, Form } from 'react-bootstrap'
 import AlertComponent from './AlertComponent'
 import { debounce } from 'lodash'
 
-const Search = ({ onChangeInput }) => {
+const Search = ({ onChangeInput, query }) => {
   const [isInputValue, setIsInputValue] = useState(true)
+  const [value, setValue] = useState('')
 
   const formatInputValue = evt => evt.target.value.trim().toLowerCase()
   const debouncedFunc = debounce(onChangeInput, 300)
 
-  const onChange = evt => {
+  useEffect(() => {
+    if (query) setValue(query)
+  }, [query])
+
+  const handleChange = evt => {
     const value = formatInputValue(evt)
 
     if (value && value.length > 1) {
@@ -30,7 +35,11 @@ const Search = ({ onChangeInput }) => {
           <Form.Control
             type='text'
             placeholder='react'
-            onChange={onChange}
+            onChange={handleChange}
+            onKeyUp={evt => {
+              if (evt.key === 'Enter') handleChange(evt)
+            }}
+            value={value}
           />
         </FloatingLabel>
       </Form.Group>
