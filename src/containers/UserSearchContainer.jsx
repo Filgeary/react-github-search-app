@@ -1,14 +1,15 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Search from '../components/Search'
 import CardComponent from '../components/CardComponent'
 import { Row, Spinner } from 'react-bootstrap'
 import { useGetUsers } from '../hooks/useGetUsers'
 import AlertComponent from '../components/AlertComponent'
 import { PaginationComponent } from '../components/PaginationComponent'
+import { useSessionStorage } from '../hooks/useSessionStorage'
 
 const UserSearchContainer = () => {
-  const [userQuery, setUserQuery] = useState('')
-  const [pageCount, setPageCount] = useState(1)
+  const [userQuery, setUserQuery] = useSessionStorage('userQuery', '')
+  const [pageCount, setPageCount] = useSessionStorage('userPage', 1)
 
   const {
     isLoading,
@@ -25,22 +26,31 @@ const UserSearchContainer = () => {
   const handleChangeSearch = user => {
     setUserQuery(user)
     setPageCount(1)
-    setTimeout(() => refetch().then(() => console.log('Refetch, User')), 0)
+    setTimeout(() => {
+      refetch().then(() => console.log('Refetch, User'))
+    }, 0)
   }
 
   const handleClickPrevPage = () => {
-    setPageCount(prevState => prevState - 1)
-    setTimeout(() => refetch().then(() => console.log('Page - 1')), 0)
+    setPageCount(prevState => +prevState - 1)
+    setTimeout(() => {
+      refetch().then(() => console.log('Page - 1'))
+    }, 0)
   }
 
   const handleClickNextPage = () => {
-    setPageCount(prevState => prevState + 1)
-    setTimeout(() => refetch().then(() => console.log('Page + 1')), 0)
+    setPageCount(prevState => +prevState + 1)
+    setTimeout(() => {
+      refetch().then(() => console.log('Page + 1'))
+    }, 0)
   }
 
   return (
     <>
-      <Search onChangeInput={user => handleChangeSearch(user)} />
+      <Search
+        onChangeInput={user => handleChangeSearch(user)}
+        defaultValue={userQuery}
+      />
 
       {isLoading ? (
         <>
