@@ -25,6 +25,10 @@ const Search = ({ onChangeInput, query }) => {
     }
   }
 
+  const handleKeyUp = evt => {
+    if (evt.key === 'Enter') handleChange(evt)
+  }
+  
   return (
     <>
       <Form.Group>
@@ -36,9 +40,7 @@ const Search = ({ onChangeInput, query }) => {
             type='text'
             placeholder='react'
             onChange={handleChange}
-            onKeyUp={evt => {
-              if (evt.key === 'Enter') handleChange(evt)
-            }}
+            onKeyUp={handleKeyUp}
             value={value}
           />
         </FloatingLabel>
