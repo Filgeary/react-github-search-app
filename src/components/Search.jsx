@@ -1,34 +1,29 @@
 import React, { useEffect, useState } from 'react'
 import { FloatingLabel, Form } from 'react-bootstrap'
-import AlertComponent from './AlertComponent'
 import { debounce } from 'lodash'
 
-const Search = ({ onChangeInput, query }) => {
-  const [isInputValue, setIsInputValue] = useState(true)
+const Search = ({ onChangeInput, defaultValue }) => {
   const [value, setValue] = useState('')
 
   const formatInputValue = evt => evt.target.value.trim().toLowerCase()
   const debouncedFunc = debounce(onChangeInput, 300)
 
+  // set defaultValue only when Mount!
   useEffect(() => {
-    if (query) setValue(query)
-  }, [query])
+    setValue(defaultValue)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const handleChange = evt => {
-    const value = formatInputValue(evt)
+    const inputValue = formatInputValue(evt)
 
-    if (value && value.length > 1) {
-      setIsInputValue(true)
-      debouncedFunc(value)
-    } else {
-      setIsInputValue(false)
-    }
+    if (inputValue) debouncedFunc(inputValue)
   }
 
   const handleKeyUp = evt => {
     if (evt.key === 'Enter') handleChange(evt)
   }
-  
+
   return (
     <>
       <Form.Group>
@@ -41,17 +36,10 @@ const Search = ({ onChangeInput, query }) => {
             placeholder='react'
             onChange={handleChange}
             onKeyUp={handleKeyUp}
-            value={value}
+            defaultValue={value}
           />
         </FloatingLabel>
       </Form.Group>
-
-      {!isInputValue && (
-        <AlertComponent
-          variant='danger'
-          heading='Need minimum 2 letters!'
-        />
-      )}
     </>
   )
 }
