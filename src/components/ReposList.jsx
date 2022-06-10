@@ -1,10 +1,21 @@
 import React from 'react'
-import { Badge, Container, NavLink, Row, Stack } from 'react-bootstrap'
+import { Badge, Container, Form, NavLink, Row, Stack } from 'react-bootstrap'
 
-const ReposList = ({ repos }) => {
+const ReposList = ({ repos, onChangeSelect, sortFilter }) => {
   return (
     <Container>
-      <h2>Repos</h2>
+      <div className='d-flex justify-content-between mb-3'>
+        <h2 className='mb-0'>Repos</h2>
+
+        <Form.Select
+          className='w-auto'
+          onChange={onChangeSelect}
+          defaultValue={sortFilter}
+        >
+          <option value='updated'>Last Updated</option>
+          <option value=''>Name | A-Z</option>
+        </Form.Select>
+      </div>
 
       <Stack gap={3}>
         {repos &&

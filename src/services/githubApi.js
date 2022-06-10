@@ -18,6 +18,10 @@ export const getUser = async user => {
   return await githubApi.get(`/users/${user}`)
 }
 
-export const getReposByUser = async (user, page = '1') => {
-  return await githubApi.get(`/users/${user}/repos?page=${page}&per_page=20`)
+export const getReposByUser = async (user, page = '1', sort = '') => {
+  const sortQuery = sort ? `&sort=${sort}` : ''
+
+  return await githubApi.get(
+    `/users/${user}/repos?page=${page}&per_page=20${sortQuery}`,
+  )
 }

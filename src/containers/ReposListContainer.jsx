@@ -7,6 +7,7 @@ import { PaginationComponent } from '../components/PaginationComponent'
 
 const ReposListContainer = ({ queryId }) => {
   const [pageCount, setPageCount] = useState(1)
+  const [sortFilter, setSortFilter] = useState('updated')
 
   const {
     isLoading,
@@ -14,7 +15,7 @@ const ReposListContainer = ({ queryId }) => {
     isError,
     error,
     data: responseData,
-  } = useGetReposByUser(queryId, pageCount)
+  } = useGetReposByUser(queryId, pageCount, sortFilter)
 
   const data = responseData?.data
   const hasData = responseData?.data?.length
@@ -22,6 +23,10 @@ const ReposListContainer = ({ queryId }) => {
 
   const handleClickPrevPage = () => setPageCount(prevPage => prevPage - 1)
   const handleClickNextPage = () => setPageCount(prevPage => prevPage + 1)
+  const handleChangeSelectFilter = evt => {
+    setSortFilter(evt.target.value)
+    setPageCount(1)
+  }
 
   if (isLoading) {
     return (
@@ -49,7 +54,11 @@ const ReposListContainer = ({ queryId }) => {
   return (
     data && (
       <>
-        <ReposList repos={data} />
+        <ReposList
+          repos={data}
+          onChangeSelect={handleChangeSelectFilter}
+          sortFilter={sortFilter}
+        />
 
         {hasData ? (
           <PaginationComponent
