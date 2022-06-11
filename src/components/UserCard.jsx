@@ -2,8 +2,8 @@ import React from 'react'
 import { Button, Card, Col } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 
-const CardComponent = ({ item }) => {
-  const { avatar_url, login, type } = item
+const UserCard = ({ user }) => {
+  const { avatar_url, login, type } = user
 
   return (
     <Col>
@@ -26,4 +26,4 @@ const CardComponent = ({ item }) => {
   )
 }
 
-export default CardComponent
+export default UserCard
