@@ -1,6 +1,6 @@
 import React from 'react'
 import Search from '../components/Search'
-import CardComponent from '../components/CardComponent'
+import UserCard from '../components/UserCard'
 import { Row, Spinner } from 'react-bootstrap'
 import { useGetUsers } from '../hooks/useGetUsers'
 import AlertComponent from '../components/AlertComponent'
@@ -76,7 +76,7 @@ const UserSearchContainer = () => {
             >
               {responseData.data?.items?.map(item => {
                 return (
-                  <CardComponent
+                  <UserCard
                     item={item}
                     key={item.id}
                   />
