@@ -2,8 +2,8 @@ import React from 'react'
 import { Button, Card, Col } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 
-const UserCard = ({ item }) => {
-  const { avatar_url, login, type } = item
+const UserCard = ({ user }) => {
+  const { avatar_url, login, type } = user
 
   return (
     <Col>

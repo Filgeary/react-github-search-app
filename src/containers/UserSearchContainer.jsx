@@ -1,15 +1,16 @@
 import React from 'react'
 import Search from '../components/Search'
-import UserCard from '../components/UserCard'
-import { Row, Spinner } from 'react-bootstrap'
+import { Spinner } from 'react-bootstrap'
 import { useGetUsers } from '../hooks/useGetUsers'
 import AlertComponent from '../components/AlertComponent'
 import { PaginationComponent } from '../components/PaginationComponent'
 import { useSessionStorage } from '../hooks/useSessionStorage'
+import { UserCardList } from '../components/UserCardList'
 
 const UserSearchContainer = () => {
   const [userQuery, setUserQuery] = useSessionStorage('userQuery', '')
   const [pageCount, setPageCount] = useSessionStorage('userPage', 1)
+  const [sortFilter, setSortFilter] = useSessionStorage('userSortFilter', '')
 
   const {
     isLoading,
@@ -18,7 +19,7 @@ const UserSearchContainer = () => {
     error,
     data: responseData,
     refetch,
-  } = useGetUsers(userQuery, pageCount)
+  } = useGetUsers(userQuery, pageCount, sortFilter)
 
   const hasNextPage = responseData?.headers?.['link']?.includes('rel="next"')
   const hasData = responseData?.data?.items?.length
@@ -42,6 +43,16 @@ const UserSearchContainer = () => {
     setPageCount(prevState => +prevState + 1)
     setTimeout(() => {
       refetch().then(() => console.log('Page + 1'))
+    }, 0)
+  }
+
+  const handleChangeSelectFilter = evt => {
+    const value = evt.target.value
+
+    setSortFilter(value)
+    setPageCount(1)
+    setTimeout(() => {
+      refetch().then(() => console.log('change filter -', value))
     }, 0)
   }
 
@@ -70,19 +81,11 @@ const UserSearchContainer = () => {
       ) : (
         responseData && (
           <>
-            <Row
-              md={4}
-              className='g-4 justify-content-center'
-            >
-              {responseData.data?.items?.map(item => {
-                return (
-                  <UserCard
-                    item={item}
-                    key={item.id}
-                  />
-                )
-              })}
-            </Row>
+            <UserCardList
+              userList={responseData.data}
+              onChangeSelect={handleChangeSelectFilter}
+              sortFilter={sortFilter}
+            />
 
             {hasData ? (
               <PaginationComponent
