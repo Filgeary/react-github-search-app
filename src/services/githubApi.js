@@ -5,10 +5,11 @@ const GITHUB_TOKEN = process.env.REACT_APP_GITHUB_TOKEN || ''
 const githubApi = axios.create({
   baseURL: 'https://api.github.com',
   timeout: 5000,
-  headers: {
-    Authorization: `Token ${GITHUB_TOKEN}`,
-  },
 })
+
+if (GITHUB_TOKEN) {
+  githubApi.defaults.headers.common['Authorization'] = `token ${GITHUB_TOKEN}`
+}
 
 export const getUsers = async (user, page = '1', sort = '') => {
   const sortQuery = sort ? `&sort=${sort}` : ''
