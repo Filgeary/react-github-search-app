@@ -14,41 +14,42 @@ export const PaginationComponent = props => {
     <Container className='text-center'>
       <p>Current Page: {pageCount}</p>
 
-      <Button
-        className='mx-4'
-        variant='info'
-        size='lg'
-        type='button'
-        onClick={onClickPrevPage}
-        disabled={isFetching || pageCount === 1}
-      >
-        {isFetching && (
-          <Spinner
-            as='span'
-            size='sm'
-            animation='border'
-            variant='primary'
-          />
-        )}{' '}
-        {isFetching ? 'Loading...' : '⬅ Back'}
-      </Button>
-      <Button
-        variant='info'
-        size='lg'
-        type='button'
-        onClick={onClickNextPage}
-        disabled={isFetching || !hasNextPage}
-      >
-        {isFetching && (
-          <Spinner
-            as='span'
-            size='sm'
-            animation='border'
-            variant='primary'
-          />
-        )}{' '}
-        {isFetching ? 'Loading...' : 'Next ➡'}
-      </Button>
+      <div className='d-flex justify-content-center gap-4'>
+        <Button
+          variant='outline-secondary'
+          size='lg'
+          type='button'
+          onClick={onClickPrevPage}
+          disabled={isFetching || pageCount === 1}
+        >
+          {isFetching && (
+            <Spinner
+              as='span'
+              size='sm'
+              animation='border'
+              variant='primary'
+            />
+          )}{' '}
+          {isFetching ? 'Loading...' : <span>&#8592; Back</span>}
+        </Button>
+        <Button
+          variant='outline-secondary'
+          size='lg'
+          type='button'
+          onClick={onClickNextPage}
+          disabled={isFetching || !hasNextPage}
+        >
+          {isFetching && (
+            <Spinner
+              as='span'
+              size='sm'
+              animation='border'
+              variant='primary'
+            />
+          )}{' '}
+          {isFetching ? 'Loading...' : <span>Next &#8594;</span>}
+        </Button>
+      </div>
     </Container>
   )
 }

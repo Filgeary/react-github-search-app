@@ -28,7 +28,7 @@ const Search = ({ onChangeInput, defaultValue }) => {
     <>
       <Form.Group>
         <FloatingLabel
-          label='Type here...'
+          label='Search Users...'
           controlId='floatingInput'
         >
           <Form.Control
