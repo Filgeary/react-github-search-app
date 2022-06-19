@@ -7,6 +7,7 @@ import ProfilePage from './pages/ProfilePage'
 import AboutPage from './pages/AboutPage'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools'
+import Footer from './components/Footer'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -23,7 +24,7 @@ const App = () => {
       <BrowserRouter>
         <Container
           fluid
-          className='g-0'
+          className='g-0 min-vh-100 d-flex flex-column'
         >
           <NavBarComponent />
 
@@ -46,6 +47,8 @@ const App = () => {
               </Route>
             </Switch>
           </main>
+
+          <Footer />
         </Container>
       </BrowserRouter>
 
