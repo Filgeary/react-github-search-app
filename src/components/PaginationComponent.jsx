@@ -11,7 +11,7 @@ export const PaginationComponent = props => {
   } = props
 
   return (
-    <Container className='text-center'>
+    <Container className='text-center mb-4'>
       <p>Current Page: {pageCount}</p>
 
       <div className='d-flex justify-content-center gap-4'>

@@ -120,3 +120,7 @@ input[type='radio'].visually-hidden {
   clip-path: inset(100%);
   overflow: hidden;
 }
+
+svg {
+  fill: #666;
+}
