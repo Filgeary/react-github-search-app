@@ -124,3 +124,27 @@ input[type='radio'].visually-hidden {
 svg {
   fill: #666;
 }
+
+/* Custom Scrollbars
+================================================= */
+
+/* Works on Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #666 #666;
+}
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 12px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #212529;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #666;
+  border-radius: 20px;
+  border: 3px solid #666;
+}
