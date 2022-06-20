@@ -28,7 +28,7 @@ const App = () => {
         >
           <NavBarComponent />
 
-          <main className='py-3'>
+          <main className='py-4'>
             <Switch>
               <Route
                 path='/'
