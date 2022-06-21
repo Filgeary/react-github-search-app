@@ -7,7 +7,7 @@ const UserCard = ({ user }) => {
 
   return (
     <Col>
-      <Card>
+      <Card style={{ borderBottom: '2px solid #ccc' }}>
         <Card.Img
           style={{ minWidth: 160, minHeight: 160 }}
           variant='top'
@@ -18,7 +18,7 @@ const UserCard = ({ user }) => {
           <Card.Title>{login}</Card.Title>
           <Card.Text>{type}</Card.Text>
           <LinkContainer to={`/profile/${login}`}>
-            <Button variant='primary'>Read More</Button>
+            <Button variant='primary'>Open Profile</Button>
           </LinkContainer>
         </Card.Body>
       </Card>
