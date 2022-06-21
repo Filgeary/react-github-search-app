@@ -20,7 +20,9 @@ export const UserCardList = ({ userList, onChangeSelect, sortFilter }) => {
       </div>
 
       <Row
+        xs={2}
         md={4}
+        xl={5}
         className='g-4 justify-content-center'
       >
         {userList &&

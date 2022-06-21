@@ -24,7 +24,7 @@ const App = () => {
       <BrowserRouter>
         <Container
           fluid
-          className='g-0 min-vh-100 d-flex flex-column'
+          className='g-0 min-vh-100 d-flex flex-column bg-light'
         >
           <NavBarComponent />
 

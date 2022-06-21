@@ -18,12 +18,17 @@ const AboutPage = () => {
 
       <Stack gap={5}>
         <Container>
-          <h2>Tech Stack</h2>
+          <h2>Tech Stack & tools</h2>
 
           <ListGroup variant='flush'>
             {dataList &&
               dataList.map((item, idx) => (
-                <ListGroup.Item key={idx}>{item}</ListGroup.Item>
+                <ListGroup.Item
+                  key={idx}
+                  style={{ backgroundColor: 'inherit' }}
+                >
+                  {item}
+                </ListGroup.Item>
               ))}
           </ListGroup>
         </Container>

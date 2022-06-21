@@ -7,7 +7,7 @@ const UserCard = ({ user }) => {
 
   return (
     <Col>
-      <Card style={{ borderBottom: '2px solid #ccc' }}>
+      <Card>
         <Card.Img
           style={{ minWidth: 160, minHeight: 160 }}
           variant='top'
