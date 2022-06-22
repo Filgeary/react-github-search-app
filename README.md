@@ -2,6 +2,12 @@
 
 > training project
 
+## Preview
+
+![search-user](preview-0_search-user.webp)
+
+![user-profile](preview-1_user-profile.webp)
+
 ## Tech Stack & main tools
 
 - React, Hooks
