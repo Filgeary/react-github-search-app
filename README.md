@@ -1,10 +1,13 @@
-# React-hooks-practice-github-api
+# React-github-search-app
 
 > training project
 
-## Tools
+## Tech Stack & main tools
 
-- React
+- React, Hooks
 - React-Router
 - React-Bootstrap
-
+- React Query
+- axios
+- lodash (debounce)
+- GitHub API
