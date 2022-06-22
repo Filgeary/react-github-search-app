@@ -1,6 +1,6 @@
 import React from 'react'
 import Search from '../components/Search'
-import { Spinner } from 'react-bootstrap'
+import { Container, Spinner } from 'react-bootstrap'
 import { useGetUsers } from '../hooks/useGetUsers'
 import AlertComponent from '../components/AlertComponent'
 import { PaginationComponent } from '../components/PaginationComponent'
@@ -58,10 +58,12 @@ const UserSearchContainer = () => {
 
   return (
     <>
-      <Search
-        onChangeInput={user => handleChangeSearch(user)}
-        defaultValue={userQuery}
-      />
+      <Container className='sticky-top py-4 bg-light'>
+        <Search
+          onChangeInput={user => handleChangeSearch(user)}
+          defaultValue={userQuery}
+        />
+      </Container>
 
       {isLoading ? (
         <>

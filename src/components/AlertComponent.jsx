@@ -7,6 +7,7 @@ const AlertComponent = ({ variant, heading, text }) => {
   return (
     isShow && (
       <Alert
+        className='mb-0'
         variant={variant}
         onClose={() => setIsShow(false)}
         dismissible

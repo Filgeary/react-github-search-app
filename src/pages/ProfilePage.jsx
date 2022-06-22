@@ -10,7 +10,7 @@ const ProfilePage = () => {
   return (
     <Container>
       <Stack gap={4}>
-        <h2 className='mb-0'>User Profile</h2>
+        <h1 className='visually-hidden'>User Profile</h1>
 
         <UserProfileContainer queryId={id} />
         <ReposListContainer queryId={id} />
