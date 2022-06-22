@@ -1,13 +1,13 @@
 import React from 'react'
 import { Container } from 'react-bootstrap'
-import NavBarComponent from './components/NavBarComponent'
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
-import HomePage from './pages/HomePage'
-import ProfilePage from './pages/ProfilePage'
-import AboutPage from './pages/AboutPage'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import Footer from './components/Footer'
+import NavBarComponent from './components/NavBarComponent'
+import AboutPage from './pages/AboutPage'
+import HomePage from './pages/HomePage'
+import ProfilePage from './pages/ProfilePage'
 
 const queryClient = new QueryClient({
   defaultOptions: {
