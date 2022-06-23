@@ -5,7 +5,7 @@ import UserCard from './UserCard'
 export const UserCardList = ({ userList, onChangeSelect, sortFilter }) => {
   return (
     <>
-      <div className='d-flex justify-content-between'>
+      <div className='d-flex justify-content-between align-items-center'>
         <h2 className='mb-0'>Users</h2>
 
         <Form.Select
@@ -23,7 +23,7 @@ export const UserCardList = ({ userList, onChangeSelect, sortFilter }) => {
         xs={2}
         md={4}
         xl={5}
-        className='g-4 justify-content-center'
+        className='g-2 justify-content-center g-md-4'
       >
         {userList &&
           userList.items?.map(user => (

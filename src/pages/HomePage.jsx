@@ -6,8 +6,10 @@ import UserSearchContainer from '../containers/UserSearchContainer'
 const HomePage = () => {
   return (
     <Container>
+      <h1 className='visually-hidden'>Github Search</h1>
+
       <Stack gap={4}>
-        <h1>🔎 Search Github Users</h1>
+        <h2>🔎 Search Github Users</h2>
 
         <AlertComponent
           variant='info'

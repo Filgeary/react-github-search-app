@@ -39,10 +39,11 @@ const UserProfile = ({ user }) => {
         <Row>
           <Col
             sm={3}
-            className='text-center px-2'
+            className='text-center px-2 mb-2 mb-md-0'
           >
             <Figure>
               <Image
+                style={{ minWidth: 140, minHeight: 140 }}
                 src={avatar_url}
                 alt={login}
                 roundedCircle
@@ -68,9 +69,9 @@ const UserProfile = ({ user }) => {
             )}
           </Col>
 
-          <Col className='px-5'>
+          <Col className='px-2 px-md-5'>
             <Stack gap={3}>
-              <h3>{name}</h3>
+              <h3 className='text-center text-md-start'>{name}</h3>
 
               {bio && <p>{bio}</p>}
 
@@ -118,7 +119,7 @@ const UserProfile = ({ user }) => {
                 )}
               </ListGroup>
 
-              <div className='d-flex gap-2'>
+              <div className='d-flex gap-2 flex-wrap'>
                 <h5 className='d-inline-block'>
                   <Badge
                     pill

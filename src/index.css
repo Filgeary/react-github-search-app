@@ -5,9 +5,17 @@
   --bs-body-color: hsl(0, 0%, 23%);
 }
 
+/*@media screen and (max-width: 425px) {*/
+/*  html {*/
+/*    font-size: 14px;*/
+/*  }*/
+/*}*/
+
 body {
   min-width: 320px;
   min-height: 100vh;
+  word-break: break-word;
+  overflow-x: hidden;
 }
 
 img {
