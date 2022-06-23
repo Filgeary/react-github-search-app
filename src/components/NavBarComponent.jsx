@@ -9,7 +9,7 @@ const NavBarComponent = () => {
       variant='dark'
     >
       <Container>
-        <Nav className='me-auto'>
+        <Nav className='me-auto px-3 px-md-0'>
           <LinkContainer
             to='/'
             exact

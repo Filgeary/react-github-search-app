@@ -9,12 +9,12 @@ const UserCard = ({ user }) => {
     <Col>
       <Card>
         <Card.Img
-          style={{ minWidth: 160, minHeight: 160 }}
+          style={{ minWidth: 100, minHeight: 100 }}
           variant='top'
           src={avatar_url}
           alt={login}
         />
-        <Card.Body>
+        <Card.Body className='p-3'>
           <Card.Title>{login}</Card.Title>
           <Card.Text>{type}</Card.Text>
           <LinkContainer to={`/profile/${login}`}>
