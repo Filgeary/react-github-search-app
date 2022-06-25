@@ -23,4 +23,4 @@
 - User Search
 - Sort Filters (user, repos)
 - User Profile routing
-- Responsive layout (mobile, tablet, desktop)
+- Responsive layout

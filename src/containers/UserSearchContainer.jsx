@@ -1,16 +1,21 @@
 import React from 'react'
-import Search from '../components/Search'
 import { Container, Spinner } from 'react-bootstrap'
-import { useGetUsers } from '../hooks/useGetUsers'
 import AlertComponent from '../components/AlertComponent'
 import { PaginationComponent } from '../components/PaginationComponent'
-import { useSessionStorage } from '../hooks/useSessionStorage'
+import Search from '../components/Search'
 import { UserCardList } from '../components/UserCardList'
+import { MOBILE_BREAKPOINT } from '../constants'
+import { useGetUsers } from '../hooks/useGetUsers'
+import { useSessionStorage } from '../hooks/useSessionStorage'
+import { useWindowSize } from '../hooks/useWindowSize'
 
 const UserSearchContainer = () => {
   const [userQuery, setUserQuery] = useSessionStorage('userQuery', '')
   const [pageCount, setPageCount] = useSessionStorage('userPage', 1)
   const [sortFilter, setSortFilter] = useSessionStorage('userSortFilter', '')
+
+  const windowSize = useWindowSize()
+  const isMobile = windowSize?.width < MOBILE_BREAKPOINT
 
   const {
     isLoading,
@@ -62,6 +67,7 @@ const UserSearchContainer = () => {
         <Search
           onChangeInput={user => handleChangeSearch(user)}
           defaultValue={userQuery}
+          isMobile={isMobile}
         />
       </Container>
 
@@ -87,6 +93,7 @@ const UserSearchContainer = () => {
               userList={responseData.data}
               onChangeSelect={handleChangeSelectFilter}
               sortFilter={sortFilter}
+              isMobile={isMobile}
             />
 
             {hasData ? (

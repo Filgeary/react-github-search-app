@@ -1,8 +1,8 @@
+import { debounce } from 'lodash'
 import React, { useEffect, useState } from 'react'
 import { FloatingLabel, Form } from 'react-bootstrap'
-import { debounce } from 'lodash'
 
-const Search = ({ onChangeInput, defaultValue }) => {
+const Search = ({ onChangeInput, defaultValue, isMobile }) => {
   const [value, setValue] = useState('')
 
   const formatInputValue = evt => evt.target.value.trim().toLowerCase()
@@ -34,7 +34,7 @@ const Search = ({ onChangeInput, defaultValue }) => {
           <Form.Control
             type='text'
             placeholder='react'
-            onChange={handleChange}
+            onChange={!isMobile ? handleChange : undefined}
             onKeyUp={handleKeyUp}
             defaultValue={value}
           />
