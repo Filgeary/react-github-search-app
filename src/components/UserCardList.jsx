@@ -2,7 +2,12 @@ import React from 'react'
 import { Form, Row } from 'react-bootstrap'
 import UserCard from './UserCard'
 
-export const UserCardList = ({ userList, onChangeSelect, sortFilter }) => {
+export const UserCardList = ({
+  userList,
+  onChangeSelect,
+  sortFilter,
+  isMobile,
+}) => {
   return (
     <>
       <div className='d-flex justify-content-between align-items-center'>
@@ -28,8 +33,9 @@ export const UserCardList = ({ userList, onChangeSelect, sortFilter }) => {
         {userList &&
           userList.items?.map(user => (
             <UserCard
-              user={user}
               key={user.id}
+              user={user}
+              isMobile={isMobile}
             />
           ))}
       </Row>

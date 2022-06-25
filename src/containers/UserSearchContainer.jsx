@@ -93,6 +93,7 @@ const UserSearchContainer = () => {
               userList={responseData.data}
               onChangeSelect={handleChangeSelectFilter}
               sortFilter={sortFilter}
+              isMobile={isMobile}
             />
 
             {hasData ? (

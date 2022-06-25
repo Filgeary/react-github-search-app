@@ -2,8 +2,9 @@ import React from 'react'
 import { Button, Card, Col } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 
-const UserCard = ({ user }) => {
+const UserCard = ({ user, isMobile }) => {
   const { avatar_url, login, type } = user
+  const linkText = isMobile ? 'Open' : 'Open Profile'
 
   return (
     <Col>
@@ -14,11 +15,11 @@ const UserCard = ({ user }) => {
           src={avatar_url}
           alt={login}
         />
-        <Card.Body className='p-3'>
+        <Card.Body className='p-2 p-md-3'>
           <Card.Title>{login}</Card.Title>
           <Card.Text>{type}</Card.Text>
           <LinkContainer to={`/profile/${login}`}>
-            <Button variant='primary'>Open Profile</Button>
+            <Button variant='primary'>{linkText}</Button>
           </LinkContainer>
         </Card.Body>
       </Card>
