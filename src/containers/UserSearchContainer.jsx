@@ -63,7 +63,7 @@ const UserSearchContainer = () => {
 
   return (
     <>
-      <Container className='sticky-top py-4 bg-light'>
+      <Container className='sticky-top py-3 py-md-4 bg-light'>
         <Search
           onChangeInput={user => handleChangeSearch(user)}
           defaultValue={userQuery}
