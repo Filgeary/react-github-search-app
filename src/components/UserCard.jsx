@@ -15,11 +15,16 @@ const UserCard = ({ user, isMobile }) => {
           src={avatar_url}
           alt={login}
         />
-        <Card.Body className='p-2 p-md-3'>
+        <Card.Body>
           <Card.Title>{login}</Card.Title>
           <Card.Text>{type}</Card.Text>
           <LinkContainer to={`/profile/${login}`}>
-            <Button variant='primary'>{linkText}</Button>
+            <Button
+              variant='primary'
+              className='w-100'
+            >
+              {linkText}
+            </Button>
           </LinkContainer>
         </Card.Body>
       </Card>

@@ -1,6 +1,6 @@
 import { debounce } from 'lodash'
 import React, { useEffect, useState } from 'react'
-import { FloatingLabel, Form } from 'react-bootstrap'
+import { Button, Container, FloatingLabel, Form } from 'react-bootstrap'
 
 const Search = ({ onChangeInput, defaultValue, isMobile }) => {
   const [value, setValue] = useState('')
@@ -20,27 +20,42 @@ const Search = ({ onChangeInput, defaultValue, isMobile }) => {
     if (inputValue) debouncedFunc(inputValue)
   }
 
-  const handleKeyUp = evt => {
-    if (evt.key === 'Enter') handleChange(evt)
+  const onSubmit = evt => {
+    evt.preventDefault()
+
+    const inputValue = evt.target[0].value?.trim().toLowerCase()
+    if (inputValue) debouncedFunc(inputValue)
   }
 
   return (
-    <>
+    <Form onSubmit={onSubmit}>
       <Form.Group>
-        <FloatingLabel
-          label='Search Users...'
-          controlId='floatingInput'
-        >
-          <Form.Control
-            type='text'
-            placeholder='react'
-            onChange={!isMobile ? handleChange : undefined}
-            onKeyUp={handleKeyUp}
-            defaultValue={value}
-          />
-        </FloatingLabel>
+        <Container className='d-flex justify-content-between'>
+          <FloatingLabel
+            label='Search Users...'
+            controlId='floatingInput'
+            className='w-100'
+          >
+            <Form.Control
+              type='text'
+              placeholder='react'
+              onChange={!isMobile ? handleChange : undefined}
+              defaultValue={value}
+            />
+          </FloatingLabel>
+
+          {isMobile && (
+            <Button
+              type='submit'
+              style={{ minWidth: 'max-content' }}
+              variant='secondary'
+            >
+              Search
+            </Button>
+          )}
+        </Container>
       </Form.Group>
-    </>
+    </Form>
   )
 }
 
