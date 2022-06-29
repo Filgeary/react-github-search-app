@@ -6,7 +6,7 @@ const Search = ({ onChangeInput, defaultValue, isMobile }) => {
   const [value, setValue] = useState('')
 
   const formatInputValue = evt => evt.target.value.trim().toLowerCase()
-  const debouncedFunc = debounce(onChangeInput, 300)
+  const debouncedFunc = debounce(onChangeInput, 500)
 
   // set defaultValue only when Mount!
   useEffect(() => {
