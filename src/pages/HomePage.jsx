@@ -13,8 +13,9 @@ const HomePage = () => {
 
         <AlertComponent
           variant='info'
-          heading='Info Message'
+          heading='Welcome Message'
           text='Type below to search Users 👇'
+          isDismissible={false}
         />
         <UserSearchContainer />
       </Stack>
