@@ -113,3 +113,24 @@ svg {
   opacity: 0;
   transition: opacity 300ms;
 }
+
+/* fadeSlowDown */
+.fadeSlowDown-enter {
+  opacity: 0;
+  transform: translateY(-400px);
+}
+
+.fadeSlowDown-enter-active {
+  opacity: 1;
+  transform: translateY(0px);
+  transition: all 1500ms ease;
+}
+
+.fadeSlowDown-exit {
+  opacity: 1;
+}
+
+.fadeSlowDown-exit-active {
+  opacity: 0;
+  transition: opacity 300ms;
+}
