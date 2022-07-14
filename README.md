@@ -13,6 +13,7 @@
 - React, Hooks
 - React-Router
 - React-Bootstrap
+- animations (React Transition Group)
 - React Query
 - axios
 - lodash (debounce)
