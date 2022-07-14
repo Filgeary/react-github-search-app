@@ -92,3 +92,24 @@ svg {
   opacity: 0;
   transition: opacity 300ms;
 }
+
+/* fadeLeft */
+.fadeLeft-enter {
+  opacity: 0;
+  transform: translateX(150px);
+}
+
+.fadeLeft-enter-active {
+  opacity: 1;
+  transform: translateX(0px);
+  transition: all 700ms ease;
+}
+
+.fadeLeft-exit {
+  opacity: 1;
+}
+
+.fadeLeft-exit-active {
+  opacity: 0;
+  transition: opacity 300ms;
+}
