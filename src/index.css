@@ -68,3 +68,27 @@ svg {
   border-radius: 20px;
   border: 3px solid #666;
 }
+
+/* Animations
+================================================= */
+
+/* fadeUp */
+.fadeUp-enter {
+  opacity: 0;
+  transform: translateY(200px);
+}
+
+.fadeUp-enter-active {
+  opacity: 1;
+  transform: translateY(0px);
+  transition: all 700ms ease;
+}
+
+.fadeUp-exit {
+  opacity: 1;
+}
+
+.fadeUp-exit-active {
+  opacity: 0;
+  transition: opacity 300ms;
+}
