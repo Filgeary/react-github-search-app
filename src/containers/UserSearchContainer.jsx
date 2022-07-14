@@ -32,23 +32,17 @@ const UserSearchContainer = () => {
   const handleChangeSearch = user => {
     setUserQuery(user)
     setPageCount(1)
-    setTimeout(() => {
-      refetch().then(() => console.log('Refetch, User'))
-    }, 0)
+    setTimeout(() => refetch(), 0)
   }
 
   const handleClickPrevPage = () => {
     setPageCount(prevState => +prevState - 1)
-    setTimeout(() => {
-      refetch().then(() => console.log('Page - 1'))
-    }, 0)
+    setTimeout(() => refetch(), 0)
   }
 
   const handleClickNextPage = () => {
     setPageCount(prevState => +prevState + 1)
-    setTimeout(() => {
-      refetch().then(() => console.log('Page + 1'))
-    }, 0)
+    setTimeout(() => refetch(), 0)
   }
 
   const handleChangeSelectFilter = evt => {
@@ -56,9 +50,7 @@ const UserSearchContainer = () => {
 
     setSortFilter(value)
     setPageCount(1)
-    setTimeout(() => {
-      refetch().then(() => console.log('change filter -', value))
-    }, 0)
+    setTimeout(() => refetch(), 0)
   }
 
   return (
