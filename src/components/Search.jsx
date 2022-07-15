@@ -3,28 +3,27 @@ import React, { useEffect, useState } from 'react'
 import { Button, Container, FloatingLabel, Form } from 'react-bootstrap'
 
 const Search = ({ onChangeInput, defaultValue, isMobile }) => {
-  const [value, setValue] = useState('')
+  const [controlValue, setControlValue] = useState('')
 
-  const formatInputValue = evt => evt.target.value.trim().toLowerCase()
-  const debouncedFunc = debounce(onChangeInput, 500)
+  const formatInputValue = evt => evt.target.value.trim()
+  const debouncedOnChangeInput = debounce(onChangeInput, 500)
 
   // set defaultValue only when Mount!
   useEffect(() => {
-    setValue(defaultValue)
+    setControlValue(defaultValue)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const handleChange = evt => {
     const inputValue = formatInputValue(evt)
-
-    if (inputValue) debouncedFunc(inputValue)
+    if (inputValue) debouncedOnChangeInput(inputValue)
   }
 
   const onSubmit = evt => {
     evt.preventDefault()
 
-    const inputValue = evt.target[0].value?.trim().toLowerCase()
-    if (inputValue) debouncedFunc(inputValue)
+    const inputValue = evt.target[0].value?.trim()
+    if (inputValue) debouncedOnChangeInput(inputValue)
   }
 
   return (
@@ -40,7 +39,7 @@ const Search = ({ onChangeInput, defaultValue, isMobile }) => {
               type='text'
               placeholder='react'
               onChange={!isMobile ? handleChange : undefined}
-              defaultValue={value}
+              defaultValue={controlValue}
             />
           </FloatingLabel>
 

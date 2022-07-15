@@ -1,11 +1,16 @@
 import React from 'react'
-import { useGetUser } from '../hooks/useGetUser'
 import { Spinner } from 'react-bootstrap'
 import AlertComponent from '../components/AlertComponent'
 import UserProfile from '../components/UserProfile'
+import { useFetchUser } from '../hooks/useFetchUser'
 
 const UserProfileContainer = ({ queryId }) => {
-  const { isLoading, isError, error, data: responseData } = useGetUser(queryId)
+  const {
+    isLoading,
+    isError,
+    error,
+    data: responseData,
+  } = useFetchUser(queryId)
 
   if (isLoading) {
     return (

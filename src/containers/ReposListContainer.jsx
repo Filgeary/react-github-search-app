@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import { useGetReposByUser } from '../hooks/useGetReposByUser'
 import { Spinner } from 'react-bootstrap'
 import AlertComponent from '../components/AlertComponent'
-import ReposList from '../components/ReposList'
 import { PaginationComponent } from '../components/PaginationComponent'
+import ReposList from '../components/ReposList'
+import { useFetchReposByUser } from '../hooks/useFetchReposByUser'
 
 const ReposListContainer = ({ queryId }) => {
   const [pageCount, setPageCount] = useState(1)
@@ -15,7 +15,7 @@ const ReposListContainer = ({ queryId }) => {
     isError,
     error,
     data: responseData,
-  } = useGetReposByUser(queryId, pageCount, sortFilter)
+  } = useFetchReposByUser(queryId, pageCount, sortFilter)
 
   const data = responseData?.data
   const hasData = responseData?.data?.length
