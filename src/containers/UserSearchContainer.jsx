@@ -5,7 +5,7 @@ import { PaginationComponent } from '../components/PaginationComponent'
 import Search from '../components/Search'
 import { UserCardList } from '../components/UserCardList'
 import { MOBILE_BREAKPOINT } from '../constants'
-import { useGetUsers } from '../hooks/useGetUsers'
+import { useFetchUsers } from '../hooks/useFetchUsers'
 import { useSessionStorage } from '../hooks/useSessionStorage'
 import { useWindowSize } from '../hooks/useWindowSize'
 
@@ -24,7 +24,7 @@ const UserSearchContainer = () => {
     error,
     data: responseData,
     refetch,
-  } = useGetUsers(userQuery, pageCount, sortFilter)
+  } = useFetchUsers(userQuery, pageCount, sortFilter)
 
   const hasNextPage = responseData?.headers?.['link']?.includes('rel="next"')
   const hasData = responseData?.data?.items?.length

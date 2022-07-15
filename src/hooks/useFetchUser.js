@@ -1,6 +1,6 @@
 import { useQuery } from 'react-query'
 import { fetchUser } from '../services/githubApi'
 
-export const useGetUser = user => {
+export const useFetchUser = user => {
   return useQuery(['user', user], () => fetchUser(user))
 }
