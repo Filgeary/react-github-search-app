@@ -5,6 +5,7 @@ import { ReactQueryDevtools } from 'react-query/devtools'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import Footer from './components/Footer'
 import NavBarComponent from './components/NavBarComponent'
+import { CACHE_TIME_IN_MS } from './constants'
 import AboutPage from './pages/AboutPage'
 import HomePage from './pages/HomePage'
 import ProfilePage from './pages/ProfilePage'
@@ -13,7 +14,7 @@ const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       refetchOnWindowFocus: false,
-      cacheTime: 60 * 60 * 1000,
+      cacheTime: CACHE_TIME_IN_MS,
     },
   },
 })
