@@ -11,7 +11,7 @@ if (GITHUB_TOKEN) {
   githubApi.defaults.headers.common['Authorization'] = `token ${GITHUB_TOKEN}`
 }
 
-export const getUsers = async (user, page = '1', sort = '') => {
+export const fetchUsers = async (user, page = '1', sort = '') => {
   const sortQuery = sort ? `&sort=${sort}` : ''
 
   return await githubApi.get(
@@ -19,11 +19,11 @@ export const getUsers = async (user, page = '1', sort = '') => {
   )
 }
 
-export const getUser = async user => {
+export const fetchUser = async user => {
   return await githubApi.get(`/users/${user}`)
 }
 
-export const getReposByUser = async (user, page = '1', sort = '') => {
+export const fetchReposByUser = async (user, page = '1', sort = '') => {
   const sortQuery = sort ? `&sort=${sort}` : ''
 
   return await githubApi.get(
