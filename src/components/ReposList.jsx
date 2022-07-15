@@ -74,22 +74,23 @@ const ReposList = ({ repos, onChangeSelect, sortFilter }) => {
                     {description && <p>{description}</p>}
                   </div>
                   <div className='d-flex flex-wrap gap-2'>
-                    {topics.map(topic => {
-                      return (
-                        <h5
-                          key={topic}
-                          className='d-inline-block'
-                        >
-                          <Badge
-                            pill
-                            bg='warning'
-                            text='dark'
+                    {topics &&
+                      topics.map(topic => {
+                        return (
+                          <h5
+                            key={topic}
+                            className='d-inline-block'
                           >
-                            {topic}
-                          </Badge>
-                        </h5>
-                      )
-                    })}
+                            <Badge
+                              pill
+                              bg='warning'
+                              text='dark'
+                            >
+                              {topic}
+                            </Badge>
+                          </h5>
+                        )
+                      })}
                   </div>
                 </Row>
               )
