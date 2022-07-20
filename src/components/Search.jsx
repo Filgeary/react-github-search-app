@@ -1,4 +1,4 @@
-import { debounce } from 'lodash'
+import { debounce } from 'lodash-es'
 import React, { useEffect, useState } from 'react'
 import { Button, Container, FloatingLabel, Form } from 'react-bootstrap'
 
