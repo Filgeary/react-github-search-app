@@ -25,3 +25,8 @@
 - Sort Filters (user, repos)
 - User Profile routing
 - Responsive layout
+
+## Todo
+
+- [ ] add TypeScript
+- [ ] add User's Favorite List
