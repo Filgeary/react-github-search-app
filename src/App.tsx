@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { Container } from 'react-bootstrap'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools'
@@ -19,7 +19,7 @@ const queryClient = new QueryClient({
   },
 })
 
-const App = () => {
+const App: FC = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
