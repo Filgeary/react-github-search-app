@@ -1,8 +1,5 @@
-/**
- * @param {string} url
- */
-export const formatWebsiteUrl = url => {
-  let formattedUrl
+export const formatWebsiteUrl = (url: string): string => {
+  let formattedUrl: string
   const regexp = /^(http|https)/
 
   if (regexp.test(url)) {
@@ -14,7 +11,4 @@ export const formatWebsiteUrl = url => {
   return formattedUrl
 }
 
-/**
- * @param {string} user
- */
-export const formatTwitterUrl = user => 'https://twitter.com/' + user
+export const formatTwitterUrl = (user: string): string => 'https://twitter.com/' + user
