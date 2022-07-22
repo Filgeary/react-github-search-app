@@ -14,7 +14,7 @@ if (GITHUB_TOKEN) {
   githubService.defaults.headers.common['Authorization'] = `token ${GITHUB_TOKEN}`
 }
 
-export const fetchUsers = async (user: string, page = 1, sort = '') => {
+export const fetchUserSearchList = async (user: string, page = 1, sort = '') => {
   const sortQuery = sort ? `&sort=${sort}` : ''
 
   return await githubService.get<IUserSearch>(
