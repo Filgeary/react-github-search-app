@@ -5,12 +5,7 @@ import UserProfile from '../components/UserProfile'
 import { useFetchUser } from '../hooks/useFetchUser'
 
 const UserProfileContainer = ({ queryId }) => {
-  const {
-    isLoading,
-    isError,
-    error,
-    data: responseData,
-  } = useFetchUser(queryId)
+  const { isLoading, isError, error, data: responseData } = useFetchUser(queryId)
 
   if (isLoading) {
     return (
@@ -35,7 +30,7 @@ const UserProfileContainer = ({ queryId }) => {
     )
   }
 
-  return responseData && <UserProfile user={responseData.data} />
+  return responseData ? <UserProfile user={responseData.data} /> : null
 }
 
 export default UserProfileContainer

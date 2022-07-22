@@ -51,32 +51,30 @@ const ReposListContainer = ({ queryId }) => {
     )
   }
 
-  return (
-    data && (
-      <>
-        <ReposList
-          repos={data}
-          onChangeSelect={handleChangeSelectFilter}
-          sortFilter={sortFilter}
-        />
+  return data ? (
+    <>
+      <ReposList
+        repos={data}
+        onChangeSelect={handleChangeSelectFilter}
+        sortFilter={sortFilter}
+      />
 
-        {hasData ? (
-          <PaginationComponent
-            pageCount={pageCount}
-            onClickPrevPage={handleClickPrevPage}
-            isFetching={isFetching}
-            onClickNextPage={handleClickNextPage}
-            hasNextPage={hasNextPage}
-          />
-        ) : (
-          <AlertComponent
-            variant='danger'
-            heading='Not Found Repos!'
-          />
-        )}
-      </>
-    )
-  )
+      {hasData ? (
+        <PaginationComponent
+          pageCount={pageCount}
+          onClickPrevPage={handleClickPrevPage}
+          isFetching={isFetching}
+          onClickNextPage={handleClickNextPage}
+          hasNextPage={hasNextPage}
+        />
+      ) : (
+        <AlertComponent
+          variant='danger'
+          heading='Not Found Repos!'
+        />
+      )}
+    </>
+  ) : null
 }
 
 export default ReposListContainer

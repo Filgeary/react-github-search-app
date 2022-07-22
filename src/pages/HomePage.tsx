@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { Container, Stack } from 'react-bootstrap'
 import AlertComponent from '../components/AlertComponent'
 import UserSearchContainer from '../containers/UserSearchContainer'
 
-const HomePage = () => {
+const HomePage: FC = () => {
   return (
     <Container>
       <h1 className='visually-hidden'>Github Search</h1>

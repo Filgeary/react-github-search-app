@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { Container, Stack } from 'react-bootstrap'
 import { useParams } from 'react-router-dom'
 import ReposListContainer from '../containers/ReposListContainer'
 import UserProfileContainer from '../containers/UserProfileContainer'
 
-const ProfilePage = () => {
-  const { id } = useParams()
+const ProfilePage: FC = () => {
+  const { id } = useParams<{ id: string }>()
 
   return (
     <Container>
