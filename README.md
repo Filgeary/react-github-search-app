@@ -10,13 +10,14 @@
 
 ## Tech Stack & main tools
 
+- TypeScript
 - React, Hooks
 - React-Router
 - React-Bootstrap
 - animations (React Transition Group)
-- React Query
+- React-Query
 - axios
-- lodash (debounce)
+- lodash
 - GitHub API
 
 ## Features
@@ -28,5 +29,5 @@
 
 ## Todo
 
-- [ ] add TypeScript
+- [x] add TypeScript
 - [ ] add User's Favorite List
