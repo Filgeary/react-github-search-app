@@ -46,7 +46,16 @@ const About: FC<Props> = ({ dataList }) => {
               rel='noopener noreferrer'
               className='d-inline-block px-0 border-bottom'
             >
-              Filgeary 👉
+              Filgeary
+            </NavLink>
+            {' | '}
+            <NavLink
+              href='https://github.com/Filgeary/react-github-search-app'
+              target='_blank'
+              rel='noopener noreferrer'
+              className='d-inline-block px-0 border-bottom'
+            >
+              Project Link on GitHub 👉
             </NavLink>
           </p>
         </Stack>
