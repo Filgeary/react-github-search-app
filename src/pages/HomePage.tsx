@@ -6,10 +6,10 @@ import UserSearchContainer from '../containers/UserSearchContainer'
 const HomePage: FC = () => {
   return (
     <Container>
-      <h1 className='visually-hidden'>Github Search</h1>
+      <h1 className='visually-hidden'>GitHub Search</h1>
 
       <Stack gap={4}>
-        <h2>🔎 Search Github Users</h2>
+        <h2>🔎 Search GitHub Users</h2>
 
         <AlertComponent
           variant='info'

@@ -14,7 +14,7 @@ const NavBarComponent: FC = () => {
             to='/'
             exact
           >
-            <Nav.Link className='navbar-brand active'>Github Search</Nav.Link>
+            <Nav.Link className='navbar-brand active'>GitHub Search</Nav.Link>
           </LinkContainer>
           <LinkContainer
             to='/'
