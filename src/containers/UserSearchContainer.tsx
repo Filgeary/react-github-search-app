@@ -1,21 +1,21 @@
-import React from 'react'
+import React, { ChangeEvent, FC } from 'react'
 import { Container, Spinner } from 'react-bootstrap'
 import AlertComponent from '../components/AlertComponent'
 import { PaginationComponent } from '../components/PaginationComponent'
 import Search from '../components/Search'
-import { UserCardList } from '../components/UserCardList'
+import { UserSearchList } from '../components/UserSearchList'
 import { MOBILE_BREAKPOINT } from '../constants'
-import { useFetchUsers } from '../hooks/useFetchUsers'
+import { useFetchUserSearchList } from '../hooks/useFetchUserSearchList'
 import { useSessionStorage } from '../hooks/useSessionStorage'
 import { useWindowSize } from '../hooks/useWindowSize'
 
-const UserSearchContainer = () => {
+const UserSearchContainer: FC = () => {
   const [userQuery, setUserQuery] = useSessionStorage('userQuery', '')
   const [pageCount, setPageCount] = useSessionStorage('userPage', 1)
   const [sortFilter, setSortFilter] = useSessionStorage('userSortFilter', '')
 
   const windowSize = useWindowSize()
-  const isMobile = windowSize?.width < MOBILE_BREAKPOINT
+  const isMobile = windowSize.width ? windowSize.width < MOBILE_BREAKPOINT : undefined
 
   const {
     isLoading,
@@ -24,12 +24,12 @@ const UserSearchContainer = () => {
     error,
     data: responseData,
     refetch,
-  } = useFetchUsers(userQuery, pageCount, sortFilter)
+  } = useFetchUserSearchList(userQuery, pageCount, sortFilter)
 
-  const hasNextPage = responseData?.headers?.['link']?.includes('rel="next"')
+  const hasNextPage = Boolean(responseData?.headers?.['link']?.includes('rel="next"'))
   const hasData = responseData?.data?.items?.length
 
-  const handleChangeSearch = user => {
+  const handleChangeSearch = (user: string) => {
     setUserQuery(user)
     setPageCount(1)
     setTimeout(() => refetch(), 0)
@@ -45,7 +45,7 @@ const UserSearchContainer = () => {
     setTimeout(() => refetch(), 0)
   }
 
-  const handleChangeSelectFilter = evt => {
+  const handleChangeSelectFilter = (evt: ChangeEvent<HTMLSelectElement>) => {
     const value = evt.target.value
 
     setSortFilter(value)
@@ -76,12 +76,12 @@ const UserSearchContainer = () => {
         <AlertComponent
           variant='danger'
           heading='Error'
-          text={error.message}
+          text={error instanceof Error ? error?.message : ''}
         />
       ) : (
         responseData && (
           <>
-            <UserCardList
+            <UserSearchList
               userList={responseData.data}
               onChangeSelect={handleChangeSelectFilter}
               sortFilter={sortFilter}

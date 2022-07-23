@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { Container } from 'react-bootstrap'
 
-const Footer = () => (
+const Footer: FC = () => (
   <Container
     fluid
     style={{

@@ -1,10 +1,18 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { Button, Card, Col } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
+import { IUserSearchListItem } from '../models/IUserSearchList'
 
-const UserCard = ({ user, isMobile }) => {
-  const { avatar_url, login, type } = user
+type Props = {
+  user: IUserSearchListItem | undefined
+  isMobile: boolean | undefined
+}
+const UserCard: FC<Props> = ({ user, isMobile }) => {
   const linkText = isMobile ? 'Open' : 'Open Profile'
+
+  if (!user) return null
+
+  const { avatar_url, login, type } = user
 
   return (
     <Col>

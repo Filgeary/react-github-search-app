@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { Container, Nav, Navbar } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 
-const NavBarComponent = () => {
+const NavBarComponent: FC = () => {
   return (
     <Navbar
       bg='dark'
@@ -14,7 +14,7 @@ const NavBarComponent = () => {
             to='/'
             exact
           >
-            <Nav.Link className='navbar-brand active'>Github Search</Nav.Link>
+            <Nav.Link className='navbar-brand active'>GitHub Search</Nav.Link>
           </LinkContainer>
           <LinkContainer
             to='/'

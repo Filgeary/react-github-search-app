@@ -1,15 +1,20 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { Button, Container, Spinner } from 'react-bootstrap'
 
-export const PaginationComponent = props => {
-  const {
-    hasNextPage,
-    isFetching,
-    onClickNextPage,
-    onClickPrevPage,
-    pageCount,
-  } = props
-
+type Props = {
+  hasNextPage: boolean
+  isFetching: boolean
+  onClickNextPage: () => void
+  onClickPrevPage: () => void
+  pageCount: number
+}
+export const PaginationComponent: FC<Props> = ({
+  hasNextPage,
+  isFetching,
+  onClickNextPage,
+  onClickPrevPage,
+  pageCount,
+}) => {
   return (
     <Container className='text-center mb-4'>
       <p>Current Page: {pageCount}</p>
