@@ -1,7 +1,13 @@
-import React, { useState } from 'react'
+import React, { FC, useState } from 'react'
 import { Alert } from 'react-bootstrap'
 
-const AlertComponent = ({ variant, heading, text, isDismissible = true }) => {
+type Props = {
+  variant: string
+  heading: string
+  text?: string
+  isDismissible?: boolean
+}
+const AlertComponent: FC<Props> = ({ variant, heading, text = '', isDismissible = true }) => {
   const [isShow, setIsShow] = useState(true)
 
   return isShow ? (
@@ -13,7 +19,7 @@ const AlertComponent = ({ variant, heading, text, isDismissible = true }) => {
       transition
     >
       <Alert.Heading>{heading}</Alert.Heading>
-      <p className='mb-0'>{text}</p>
+      {text && <p className='mb-0'>{text}</p>}
     </Alert>
   ) : null
 }

@@ -1,10 +1,13 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { Spinner } from 'react-bootstrap'
 import AlertComponent from '../components/AlertComponent'
 import UserProfile from '../components/UserProfile'
 import { useFetchUser } from '../hooks/useFetchUser'
 
-const UserProfileContainer = ({ queryId }) => {
+type Props = {
+  queryId: string
+}
+const UserProfileContainer: FC<Props> = ({ queryId }) => {
   const { isLoading, isError, error, data: responseData } = useFetchUser(queryId)
 
   if (isLoading) {
@@ -25,7 +28,7 @@ const UserProfileContainer = ({ queryId }) => {
       <AlertComponent
         variant='danger'
         heading='Error'
-        text={error.message}
+        text={error instanceof Error ? error?.message : ''}
       />
     )
   }

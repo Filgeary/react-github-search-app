@@ -1,29 +1,42 @@
 import { debounce } from 'lodash-es'
-import React, { useEffect, useState } from 'react'
+import React, { ChangeEvent, FC, FormEvent, useEffect, useRef, useState } from 'react'
 import { Button, Container, FloatingLabel, Form } from 'react-bootstrap'
 
-const Search = ({ onChangeInput, defaultValue, isMobile }) => {
-  const [controlValue, setControlValue] = useState('')
+type Props = {
+  onChangeInput: (user: string) => void
+  defaultValue: string
+  isMobile: boolean | undefined
+}
+const Search: FC<Props> = ({ onChangeInput, defaultValue, isMobile }) => {
+  const [defaultInputValue, setDefaultInputValue] = useState('')
+  const inputRef = useRef('')
 
-  const formatInputValue = evt => evt.target.value.trim()
+  const formatInputValue = (evt: ChangeEvent<HTMLInputElement>): string => evt.target.value.trim()
   const debouncedOnChangeInput = debounce(onChangeInput, 500)
 
   // set defaultValue only when Mount!
   useEffect(() => {
-    setControlValue(defaultValue)
+    setDefaultInputValue(defaultValue)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  const handleChange = evt => {
-    const inputValue = formatInputValue(evt)
-    if (inputValue) debouncedOnChangeInput(inputValue)
+  const handleChange = (evt: ChangeEvent<HTMLInputElement>): void => {
+    const value = formatInputValue(evt)
+
+    if (value) {
+      inputRef.current = value
+    }
+    if (value && !isMobile) {
+      debouncedOnChangeInput(value)
+    }
   }
 
-  const onSubmit = evt => {
+  const onSubmit = (evt: FormEvent<HTMLFormElement>): void => {
     evt.preventDefault()
 
-    const inputValue = evt.target[0].value?.trim()
-    if (inputValue) debouncedOnChangeInput(inputValue)
+    if (inputRef.current) {
+      debouncedOnChangeInput(inputRef.current)
+    }
   }
 
   return (
@@ -38,8 +51,8 @@ const Search = ({ onChangeInput, defaultValue, isMobile }) => {
             <Form.Control
               type='text'
               placeholder='react'
-              onChange={!isMobile ? handleChange : undefined}
-              defaultValue={controlValue}
+              onChange={handleChange}
+              defaultValue={defaultInputValue}
             />
           </FloatingLabel>
 

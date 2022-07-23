@@ -1,11 +1,14 @@
-import React, { useState } from 'react'
+import React, { ChangeEvent, FC, useState } from 'react'
 import { Spinner } from 'react-bootstrap'
 import AlertComponent from '../components/AlertComponent'
 import { PaginationComponent } from '../components/PaginationComponent'
 import ReposList from '../components/ReposList'
 import { useFetchReposByUser } from '../hooks/useFetchReposByUser'
 
-const ReposListContainer = ({ queryId }) => {
+type Props = {
+  queryId: string
+}
+const ReposListContainer: FC<Props> = ({ queryId }) => {
   const [pageCount, setPageCount] = useState(1)
   const [sortFilter, setSortFilter] = useState('updated')
 
@@ -23,7 +26,7 @@ const ReposListContainer = ({ queryId }) => {
 
   const handleClickPrevPage = () => setPageCount(prevPage => prevPage - 1)
   const handleClickNextPage = () => setPageCount(prevPage => prevPage + 1)
-  const handleChangeSelectFilter = evt => {
+  const handleChangeSelectFilter = (evt: ChangeEvent<HTMLSelectElement>) => {
     setSortFilter(evt.target.value)
     setPageCount(1)
   }
@@ -46,7 +49,7 @@ const ReposListContainer = ({ queryId }) => {
       <AlertComponent
         variant='danger'
         heading='Error'
-        text={error.message}
+        text={error instanceof Error ? error?.message : ''}
       />
     )
   }
