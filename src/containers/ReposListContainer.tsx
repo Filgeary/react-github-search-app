@@ -22,7 +22,7 @@ const ReposListContainer: FC<Props> = ({ queryId }) => {
 
   const data = responseData?.data
   const hasData = responseData?.data?.length
-  const hasNextPage = responseData?.headers?.['link']?.includes('rel="next"')
+  const hasNextPage = Boolean(responseData?.headers?.['link']?.includes('rel="next"'))
 
   const handleClickPrevPage = () => setPageCount(prevPage => prevPage - 1)
   const handleClickNextPage = () => setPageCount(prevPage => prevPage + 1)

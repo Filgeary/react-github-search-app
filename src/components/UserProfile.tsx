@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { FC, useEffect, useRef, useState } from 'react'
 import {
   Badge,
   Card,
@@ -12,9 +12,21 @@ import {
   Stack,
 } from 'react-bootstrap'
 import { CSSTransition } from 'react-transition-group'
+import { IUser } from '../models/IUser'
 import { formatTwitterUrl, formatWebsiteUrl } from '../utils'
 
-const UserProfile = ({ user }) => {
+type Props = {
+  user: IUser | undefined
+}
+const UserProfile: FC<Props> = ({ user }) => {
+  const cardRef = useRef(null)
+  const [isShow, setIsShow] = useState(false)
+  useEffect(() => {
+    setIsShow(!!user)
+  }, [user])
+
+  if (!user) return null
+
   const {
     login,
     avatar_url,
@@ -30,12 +42,6 @@ const UserProfile = ({ user }) => {
     public_repos,
     public_gists,
   } = user
-
-  let cardRef = useRef(null)
-  const [isShow, setIsShow] = useState(false)
-  useEffect(() => {
-    setIsShow(!!user)
-  }, [user])
 
   return (
     <CSSTransition

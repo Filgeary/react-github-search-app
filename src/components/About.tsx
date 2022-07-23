@@ -1,8 +1,11 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { FC, useEffect, useRef, useState } from 'react'
 import { Container, ListGroup, NavLink, Stack } from 'react-bootstrap'
 import { CSSTransition } from 'react-transition-group'
 
-const About = ({ dataList }) => {
+type Props = {
+  dataList: string[]
+}
+const About: FC<Props> = ({ dataList }) => {
   let contRef = useRef(null)
   const [isShow, setIsShow] = useState(false)
   useEffect(() => {
@@ -24,15 +27,14 @@ const About = ({ dataList }) => {
             <h2>Tech Stack & tools</h2>
 
             <ListGroup variant='flush'>
-              {dataList &&
-                dataList.map((item, idx) => (
-                  <ListGroup.Item
-                    key={idx}
-                    style={{ backgroundColor: 'inherit' }}
-                  >
-                    {item}
-                  </ListGroup.Item>
-                ))}
+              {dataList?.map((item, idx) => (
+                <ListGroup.Item
+                  key={idx}
+                  style={{ backgroundColor: 'inherit' }}
+                >
+                  {item}
+                </ListGroup.Item>
+              ))}
             </ListGroup>
           </Container>
 

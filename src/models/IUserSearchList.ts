@@ -1,12 +1,12 @@
-export interface IUserSearch {
+export interface IUserSearchList {
   total_count: number
   incomplete_results: boolean
-  items: UserSearchListItem[]
+  items: IUserSearchListItem[]
 
   [k: string]: unknown
 }
 
-interface UserSearchListItem {
+export interface IUserSearchListItem {
   login: string
   id: number
   node_id: string

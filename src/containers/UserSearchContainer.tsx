@@ -3,7 +3,7 @@ import { Container, Spinner } from 'react-bootstrap'
 import AlertComponent from '../components/AlertComponent'
 import { PaginationComponent } from '../components/PaginationComponent'
 import Search from '../components/Search'
-import { UserCardList } from '../components/UserCardList'
+import { UserSearchList } from '../components/UserSearchList'
 import { MOBILE_BREAKPOINT } from '../constants'
 import { useFetchUserSearchList } from '../hooks/useFetchUserSearchList'
 import { useSessionStorage } from '../hooks/useSessionStorage'
@@ -26,7 +26,7 @@ const UserSearchContainer: FC = () => {
     refetch,
   } = useFetchUserSearchList(userQuery, pageCount, sortFilter)
 
-  const hasNextPage = responseData?.headers?.['link']?.includes('rel="next"')
+  const hasNextPage = Boolean(responseData?.headers?.['link']?.includes('rel="next"'))
   const hasData = responseData?.data?.items?.length
 
   const handleChangeSearch = (user: string) => {
@@ -81,7 +81,7 @@ const UserSearchContainer: FC = () => {
       ) : (
         responseData && (
           <>
-            <UserCardList
+            <UserSearchList
               userList={responseData.data}
               onChangeSelect={handleChangeSelectFilter}
               sortFilter={sortFilter}

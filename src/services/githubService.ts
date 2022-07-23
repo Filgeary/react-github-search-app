@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { IRepo } from '../models/IRepo'
 import { IUser } from '../models/IUser'
-import { IUserSearch } from '../models/IUserSearch'
+import { IUserSearchList } from '../models/IUserSearchList'
 
 const GITHUB_TOKEN = process.env.REACT_APP_GITHUB_TOKEN || ''
 
@@ -17,7 +17,7 @@ if (GITHUB_TOKEN) {
 export const fetchUserSearchList = async (user: string, page = 1, sort = '') => {
   const sortQuery = sort ? `&sort=${sort}` : ''
 
-  return await githubService.get<IUserSearch>(
+  return await githubService.get<IUserSearchList>(
     `/search/users?q=${user}&page=${page}&per_page=10${sortQuery}`,
   )
 }

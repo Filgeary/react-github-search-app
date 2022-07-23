@@ -1,18 +1,20 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { ChangeEvent, FC, useEffect, useRef, useState } from 'react'
 import { Form, Row, Stack } from 'react-bootstrap'
 import { CSSTransition } from 'react-transition-group'
+import { IUserSearchList } from '../models/IUserSearchList'
 import UserCard from './UserCard'
 
-export const UserCardList = ({
-  userList,
-  onChangeSelect,
-  sortFilter,
-  isMobile,
-}) => {
-  let stackRef = useRef(null)
+type Props = {
+  userList: IUserSearchList | undefined
+  onChangeSelect: (evt: ChangeEvent<HTMLSelectElement>) => void
+  sortFilter: string
+  isMobile: boolean | undefined
+}
+export const UserSearchList: FC<Props> = ({ userList, onChangeSelect, sortFilter, isMobile }) => {
+  const stackRef = useRef(null)
   const [isShow, setIsShow] = useState(false)
   useEffect(() => {
-    setIsShow(!!userList.items.length)
+    setIsShow(!!userList?.items.length)
   }, [userList])
 
   return (
@@ -48,14 +50,13 @@ export const UserCardList = ({
           xl={5}
           className='g-2 justify-content-center g-md-4'
         >
-          {userList &&
-            userList.items?.map(user => (
-              <UserCard
-                key={user.id}
-                user={user}
-                isMobile={isMobile}
-              />
-            ))}
+          {userList?.items.map(user => (
+            <UserCard
+              key={user.id}
+              user={user}
+              isMobile={isMobile}
+            />
+          ))}
         </Row>
       </Stack>
     </CSSTransition>
