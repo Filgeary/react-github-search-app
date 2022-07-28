@@ -5,6 +5,7 @@ import { ReactQueryDevtools } from 'react-query/devtools'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import Footer from './components/Footer'
 import NavBarComponent from './components/NavBarComponent'
+import NotFound404 from './components/NotFound404'
 import { CACHE_TIME_IN_MS } from './constants'
 import AboutPage from './pages/AboutPage'
 import HomePage from './pages/HomePage'
@@ -32,12 +33,6 @@ const App: FC = () => {
           <main className='py-4 px-3 px-md-4'>
             <Switch>
               <Route
-                path='/'
-                exact
-              >
-                <HomePage />
-              </Route>
-              <Route
                 path='/about'
                 exact
               >
@@ -45,6 +40,15 @@ const App: FC = () => {
               </Route>
               <Route path='/profile/:id'>
                 <ProfilePage />
+              </Route>
+              <Route
+                path='/'
+                exact
+              >
+                <HomePage />
+              </Route>
+              <Route>
+                <NotFound404 />
               </Route>
             </Switch>
           </main>
