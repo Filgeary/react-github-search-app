@@ -4,7 +4,7 @@ import { QueryClient, QueryClientProvider } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import Footer from './components/Footer'
-import NavBarComponent from './components/NavBarComponent'
+import Navigation from './components/Navigation'
 import NotFound404 from './components/NotFound404'
 import { CACHE_TIME_IN_MS } from './constants'
 import { UserFavoritesProvider } from './context/userFavoritesContext'
@@ -31,7 +31,7 @@ const App: FC = () => {
             fluid
             className='g-0 min-vh-100 d-flex flex-column bg-light'
           >
-            <NavBarComponent />
+            <Navigation />
 
             <main className='py-4 px-3 px-md-4'>
               <Switch>

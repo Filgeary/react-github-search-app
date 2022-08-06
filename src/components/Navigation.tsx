@@ -3,7 +3,7 @@ import { Badge, Container, Nav, Navbar } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 import { useUserFavorites } from '../context/userFavoritesContext'
 
-const NavBarComponent: FC = () => {
+const Navigation: FC = () => {
   const { state } = useUserFavorites()
   const favoritesCount = state.favoriteList.length
 
@@ -54,4 +54,4 @@ const NavBarComponent: FC = () => {
   )
 }
 
-export default NavBarComponent
+export default Navigation

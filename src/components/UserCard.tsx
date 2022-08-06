@@ -2,7 +2,7 @@ import React, { FC, useState } from 'react'
 import { Button, Card, Col } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 import { IUserSearchListItem } from '../models/IUserSearchList'
-import { FavoritesIcon } from './icons/FavoritesIcon'
+import { FavoritesIcon } from './ui/FavoritesIcon'
 
 type Props = {
   user: IUserSearchListItem | undefined

@@ -1,8 +1,8 @@
 import React, { ChangeEvent, FC, useState } from 'react'
 import { Spinner } from 'react-bootstrap'
-import AlertComponent from '../components/AlertComponent'
-import { PaginationComponent } from '../components/PaginationComponent'
 import ReposList from '../components/ReposList'
+import AlertComponent from '../components/ui/AlertComponent'
+import { PaginationComponent } from '../components/ui/PaginationComponent'
 import { useFetchReposByUser } from '../hooks/useFetchReposByUser'
 
 type Props = {

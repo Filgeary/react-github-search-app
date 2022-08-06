@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import { Spinner } from 'react-bootstrap'
-import AlertComponent from '../components/AlertComponent'
+import AlertComponent from '../components/ui/AlertComponent'
 import UserProfile from '../components/UserProfile'
 import { useFetchUser } from '../hooks/useFetchUser'
 

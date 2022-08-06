@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import { Container, Stack } from 'react-bootstrap'
-import AlertComponent from '../components/AlertComponent'
 import { FavoritesHeader } from '../components/FavoritesHeader'
+import AlertComponent from '../components/ui/AlertComponent'
 import { useUserFavorites } from '../context/userFavoritesContext'
 
 const FavoritesPage: FC = () => {
