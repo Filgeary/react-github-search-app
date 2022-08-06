@@ -25,6 +25,11 @@ const FavoritesPage: FC = () => {
 
       <Stack gap={4}>
         <FavoritesHeader />
+        <div>
+          {state.favoriteList.map(x => (
+            <p key={x}>{x}</p>
+          ))}
+        </div>
       </Stack>
     </Container>
   )

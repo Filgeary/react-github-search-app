@@ -6,11 +6,22 @@ import UserCard from './UserCard'
 
 type Props = {
   userList: IUserSearchList | undefined
+  favoriteList: string[]
   onChangeSelect: (evt: ChangeEvent<HTMLSelectElement>) => void
   sortFilter: string
   isMobile: boolean | undefined
+  onAddToFavorite: (userLogin: string) => void
+  onRemoveFromFavorite: (userLogin: string) => void
 }
-export const UserSearchList: FC<Props> = ({ userList, onChangeSelect, sortFilter, isMobile }) => {
+export const UserSearchList: FC<Props> = ({
+  userList,
+  favoriteList,
+  onChangeSelect,
+  sortFilter,
+  isMobile,
+  onAddToFavorite,
+  onRemoveFromFavorite,
+}) => {
   const stackRef = useRef(null)
   const [isShow, setIsShow] = useState(false)
   useEffect(() => {
@@ -54,7 +65,10 @@ export const UserSearchList: FC<Props> = ({ userList, onChangeSelect, sortFilter
             <UserCard
               key={user.id}
               user={user}
+              favoriteList={favoriteList}
               isMobile={isMobile}
+              onAddToFavorite={onAddToFavorite}
+              onRemoveFromFavorite={onRemoveFromFavorite}
             />
           ))}
         </Row>

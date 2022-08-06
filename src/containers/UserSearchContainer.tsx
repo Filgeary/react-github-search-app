@@ -5,11 +5,14 @@ import { PaginationComponent } from '../components/PaginationComponent'
 import Search from '../components/Search'
 import { UserSearchList } from '../components/UserSearchList'
 import { MOBILE_BREAKPOINT } from '../constants'
+import { useUserFavorites } from '../context/userFavoritesContext'
 import { useFetchUserSearchList } from '../hooks/useFetchUserSearchList'
 import { useSessionStorage } from '../hooks/useSessionStorage'
 import { useWindowSize } from '../hooks/useWindowSize'
 
 const UserSearchContainer: FC = () => {
+  const { state, dispatch } = useUserFavorites()
+
   const [userQuery, setUserQuery] = useSessionStorage('userQuery', '')
   const [pageCount, setPageCount] = useSessionStorage('userPage', 1)
   const [sortFilter, setSortFilter] = useSessionStorage('userSortFilter', '')
@@ -53,6 +56,13 @@ const UserSearchContainer: FC = () => {
     setTimeout(() => refetch(), 0)
   }
 
+  const handleAddToFavorite = (userLogin: string) => {
+    dispatch({ type: 'ADD_ITEM', payload: userLogin })
+  }
+  const handleRemoveFromFavorite = (userLogin: string) => {
+    dispatch({ type: 'REMOVE_ITEM', payload: userLogin })
+  }
+
   return (
     <>
       <Container className='sticky-top py-3 py-md-4 bg-light'>
@@ -83,9 +93,12 @@ const UserSearchContainer: FC = () => {
           <>
             <UserSearchList
               userList={responseData.data}
+              favoriteList={state.favoriteList}
               onChangeSelect={handleChangeSelectFilter}
               sortFilter={sortFilter}
               isMobile={isMobile}
+              onAddToFavorite={handleAddToFavorite}
+              onRemoveFromFavorite={handleRemoveFromFavorite}
             />
 
             {hasData ? (

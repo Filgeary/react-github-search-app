@@ -1,4 +1,4 @@
-import React, { FC, useContext, useReducer } from 'react'
+import React, { FC, useContext, useMemo, useReducer } from 'react'
 
 type Action =
   | { type: 'ADD_ITEM'; payload: string }
@@ -47,7 +47,7 @@ const initialState: State = {
 
 export const UserFavoritesProvider: FC = ({ children }) => {
   const [state, dispatch] = useReducer(userFavoritesReducer, initialState)
-  const value = { state, dispatch }
+  const value = useMemo(() => ({ state, dispatch }), [state])
 
   // prettier-ignore
   return (

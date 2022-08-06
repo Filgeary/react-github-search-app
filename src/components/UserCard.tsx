@@ -1,22 +1,39 @@
-import React, { FC } from 'react'
+import React, { FC, useState } from 'react'
 import { Button, Card, Col } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 import { IUserSearchListItem } from '../models/IUserSearchList'
+import { FavoritesIcon } from './icons/FavoritesIcon'
 
 type Props = {
   user: IUserSearchListItem | undefined
+  favoriteList: string[]
   isMobile: boolean | undefined
+  onAddToFavorite: (userLogin: string) => void
+  onRemoveFromFavorite: (userLogin: string) => void
 }
-const UserCard: FC<Props> = ({ user, isMobile }) => {
+const UserCard: FC<Props> = ({
+  user,
+  favoriteList,
+  isMobile,
+  onAddToFavorite,
+  onRemoveFromFavorite,
+}) => {
+  const [isHover, setIsHover] = useState(false)
   const linkText = isMobile ? 'Open' : 'Open Profile'
 
   if (!user) return null
-
   const { avatar_url, login, type } = user
+
+  const isFavorite = Boolean(favoriteList.find(item => item === login))
+  const handleAddToFavorite = () => onAddToFavorite(login)
+  const handleRemoveFromFavorite = () => onRemoveFromFavorite(login)
 
   return (
     <Col>
-      <Card>
+      <Card
+        onMouseEnter={() => setIsHover(true)}
+        onMouseLeave={() => setIsHover(false)}
+      >
         <Card.Img
           style={{ minWidth: 100, minHeight: 100 }}
           variant='top'
@@ -35,6 +52,12 @@ const UserCard: FC<Props> = ({ user, isMobile }) => {
             </Button>
           </LinkContainer>
         </Card.Body>
+        <FavoritesIcon
+          isFavorite={isFavorite}
+          isHover={isHover}
+          onAddToFavorite={handleAddToFavorite}
+          onRemoveFromFavorite={handleRemoveFromFavorite}
+        />
       </Card>
     </Col>
   )
