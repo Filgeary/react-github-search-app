@@ -3,7 +3,7 @@ import { Container, Spinner } from 'react-bootstrap'
 import Search from '../components/Search'
 import AlertComponent from '../components/ui/AlertComponent'
 import { PaginationComponent } from '../components/ui/PaginationComponent'
-import { UserSearchList } from '../components/UserSearchList'
+import { UserList } from '../components/UserList'
 import { MOBILE_BREAKPOINT } from '../constants'
 import { useUserFavorites } from '../context/userFavoritesContext'
 import { useFetchUserSearchList } from '../hooks/useFetchUserSearchList'
@@ -91,8 +91,8 @@ const UserSearchContainer: FC = () => {
       ) : (
         responseData && (
           <>
-            <UserSearchList
-              userList={responseData.data}
+            <UserList
+              userList={responseData.data.items}
               favoriteList={state.favoriteList}
               onChangeSelect={handleChangeSelectFilter}
               sortFilter={sortFilter}

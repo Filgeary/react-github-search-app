@@ -1,16 +1,17 @@
 import React, { FC } from 'react'
 import { Button } from 'react-bootstrap'
-import { useUserFavorites } from '../context/userFavoritesContext'
 
-export const FavoritesHeader: FC = () => {
-  const { dispatch } = useUserFavorites()
-
+type Props = {
+  onClearList: () => void
+}
+export const FavoritesHeader: FC<Props> = ({ onClearList }) => {
   return (
     <div className='d-flex flex-wrap justify-content-between align-items-center'>
-      <h2 className='mb-0'>❤ Your Favorites List</h2>
+      <h2 className='mb-0'>Users</h2>
+
       <Button
         variant='outline-danger'
-        onClick={() => dispatch({ type: 'CLEAR' })}
+        onClick={onClearList}
       >
         Clear List
       </Button>

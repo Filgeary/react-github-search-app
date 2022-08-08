@@ -43,7 +43,7 @@ const Navigation: FC = () => {
               <Nav.Link>
                 <div className='d-flex gap-2 align-items-center'>
                   Favorites
-                  <Badge>{favoritesCount}</Badge>
+                  {favoritesCount > 0 ? <Badge bg='danger'>{favoritesCount}</Badge> : null}
                 </div>
               </Nav.Link>
             </LinkContainer>

@@ -1,11 +1,12 @@
 import React, { FC, useState } from 'react'
 import { Button, Card, Col } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
+import { IUser } from '../models/IUser'
 import { IUserSearchListItem } from '../models/IUserSearchList'
 import { FavoritesIcon } from './ui/FavoritesIcon'
 
 type Props = {
-  user: IUserSearchListItem | undefined
+  user: IUserSearchListItem | IUser | undefined
   favoriteList: string[]
   isMobile: boolean | undefined
   onAddToFavorite: (userLogin: string) => void
