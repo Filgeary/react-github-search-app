@@ -51,7 +51,7 @@ export const UserList: FC<Props> = ({
               onChange={onChangeSelect}
               defaultValue={sortFilter}
             >
-              <option value=''>Best Match</option>
+              <option value='match'>Best Match</option>
               <option value='followers'>Followers</option>
               <option value='repositories'>Repos</option>
             </Form.Select>

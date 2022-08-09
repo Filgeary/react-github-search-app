@@ -11,11 +11,11 @@ import { useSessionStorage } from '../hooks/useSessionStorage'
 import { useWindowSize } from '../hooks/useWindowSize'
 
 const UserSearchContainer: FC = () => {
-  const { state, dispatch } = useUserFavorites()
+  const { state, addUser, removeUser } = useUserFavorites()
 
   const [userQuery, setUserQuery] = useSessionStorage('userQuery', '')
   const [pageCount, setPageCount] = useSessionStorage('userPage', 1)
-  const [sortFilter, setSortFilter] = useSessionStorage('userSortFilter', '')
+  const [sortFilter, setSortFilter] = useSessionStorage('userSortFilter', 'match')
 
   const windowSize = useWindowSize()
   const isMobile = windowSize.width ? windowSize.width < MOBILE_BREAKPOINT : undefined
@@ -56,12 +56,8 @@ const UserSearchContainer: FC = () => {
     setTimeout(() => refetch(), 0)
   }
 
-  const handleAddToFavorite = (userLogin: string) => {
-    dispatch({ type: 'ADD_ITEM', payload: userLogin })
-  }
-  const handleRemoveFromFavorite = (userLogin: string) => {
-    dispatch({ type: 'REMOVE_ITEM', payload: userLogin })
-  }
+  const handleAddToFavorite = (user: string) => addUser(user)
+  const handleRemoveFromFavorite = (user: string) => removeUser(user)
 
   return (
     <>

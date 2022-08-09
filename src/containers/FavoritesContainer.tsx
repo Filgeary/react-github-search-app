@@ -9,7 +9,7 @@ import { useFetchAllUsers } from '../hooks/useFetchAllUsers'
 import { useWindowSize } from '../hooks/useWindowSize'
 
 const FavoritesContainer: FC = () => {
-  const { state, dispatch } = useUserFavorites()
+  const { state, removeUser, clear } = useUserFavorites()
   const favoritesCount = state.favoriteList.length
 
   const userListResponse = useFetchAllUsers(state.favoriteList)
@@ -18,10 +18,8 @@ const FavoritesContainer: FC = () => {
   const windowSize = useWindowSize()
   const isMobile = windowSize.width ? windowSize.width < MOBILE_BREAKPOINT : undefined
 
-  const handleRemoveFromFavorite = (userLogin: string) => {
-    dispatch({ type: 'REMOVE_ITEM', payload: userLogin })
-  }
-  const handleClearList = () => dispatch({ type: 'CLEAR' })
+  const handleRemoveFromFavorite = (user: string) => removeUser(user)
+  const handleClearList = () => clear()
 
   if (userListResponse.some(item => item.isLoading)) {
     return (
