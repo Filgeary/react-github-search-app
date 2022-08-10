@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import { Container } from 'react-bootstrap'
-import AlertComponent from './AlertComponent'
+import AlertComponent from './ui/AlertComponent'
 
 const NotFound404: FC = () => {
   return (

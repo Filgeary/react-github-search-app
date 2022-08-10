@@ -75,7 +75,7 @@ svg {
 /* fadeUp */
 .fadeUp-enter {
   opacity: 0;
-  transform: translateY(200px);
+  transform: translateY(150px);
 }
 
 .fadeUp-enter-active {
@@ -117,13 +117,13 @@ svg {
 /* fadeSlowDown */
 .fadeSlowDown-enter {
   opacity: 0;
-  transform: translateY(-400px);
+  transform: translateY(-200px);
 }
 
 .fadeSlowDown-enter-active {
   opacity: 1;
   transform: translateY(0px);
-  transition: all 1500ms ease;
+  transition: all 1000ms ease;
 }
 
 .fadeSlowDown-exit {

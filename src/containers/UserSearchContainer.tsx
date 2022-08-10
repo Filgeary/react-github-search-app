@@ -1,18 +1,21 @@
 import React, { ChangeEvent, FC } from 'react'
 import { Container, Spinner } from 'react-bootstrap'
-import AlertComponent from '../components/AlertComponent'
-import { PaginationComponent } from '../components/PaginationComponent'
 import Search from '../components/Search'
-import { UserSearchList } from '../components/UserSearchList'
+import AlertComponent from '../components/ui/AlertComponent'
+import { PaginationComponent } from '../components/ui/PaginationComponent'
+import { UserList } from '../components/UserList'
 import { MOBILE_BREAKPOINT } from '../constants'
+import { useUserFavorites } from '../context/userFavoritesContext'
 import { useFetchUserSearchList } from '../hooks/useFetchUserSearchList'
 import { useSessionStorage } from '../hooks/useSessionStorage'
 import { useWindowSize } from '../hooks/useWindowSize'
 
 const UserSearchContainer: FC = () => {
+  const { state, addUser, removeUser } = useUserFavorites()
+
   const [userQuery, setUserQuery] = useSessionStorage('userQuery', '')
   const [pageCount, setPageCount] = useSessionStorage('userPage', 1)
-  const [sortFilter, setSortFilter] = useSessionStorage('userSortFilter', '')
+  const [sortFilter, setSortFilter] = useSessionStorage('userSortFilter', 'match')
 
   const windowSize = useWindowSize()
   const isMobile = windowSize.width ? windowSize.width < MOBILE_BREAKPOINT : undefined
@@ -53,6 +56,9 @@ const UserSearchContainer: FC = () => {
     setTimeout(() => refetch(), 0)
   }
 
+  const handleAddToFavorite = (user: string) => addUser(user)
+  const handleRemoveFromFavorite = (user: string) => removeUser(user)
+
   return (
     <>
       <Container className='sticky-top py-3 py-md-4 bg-light'>
@@ -81,11 +87,14 @@ const UserSearchContainer: FC = () => {
       ) : (
         responseData && (
           <>
-            <UserSearchList
-              userList={responseData.data}
+            <UserList
+              userList={responseData.data.items}
+              favoriteList={state.favoriteList}
               onChangeSelect={handleChangeSelectFilter}
               sortFilter={sortFilter}
               isMobile={isMobile}
+              onAddToFavorite={handleAddToFavorite}
+              onRemoveFromFavorite={handleRemoveFromFavorite}
             />
 
             {hasData ? (

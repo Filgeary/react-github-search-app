@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import { Container, Stack } from 'react-bootstrap'
-import AlertComponent from '../components/AlertComponent'
+import AlertComponent from '../components/ui/AlertComponent'
 import UserSearchContainer from '../containers/UserSearchContainer'
 
 const HomePage: FC = () => {
