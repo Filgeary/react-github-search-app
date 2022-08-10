@@ -17,6 +17,7 @@ const Search: FC<Props> = ({ onChangeInput, defaultValue, isMobile }) => {
   // set defaultValue only when Mount!
   useEffect(() => {
     setDefaultInputValue(defaultValue)
+    inputRef.current = defaultValue
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -31,7 +32,7 @@ const Search: FC<Props> = ({ onChangeInput, defaultValue, isMobile }) => {
     }
   }
 
-  const onSubmit = (evt: FormEvent<HTMLFormElement>): void => {
+  const handleSubmit = (evt: FormEvent<HTMLFormElement>): void => {
     evt.preventDefault()
 
     if (inputRef.current) {
@@ -40,7 +41,7 @@ const Search: FC<Props> = ({ onChangeInput, defaultValue, isMobile }) => {
   }
 
   return (
-    <Form onSubmit={onSubmit}>
+    <Form onSubmit={handleSubmit}>
       <Form.Group>
         <Container className='d-flex justify-content-between'>
           <FloatingLabel
