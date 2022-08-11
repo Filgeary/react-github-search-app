@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 import { Spinner, Stack } from 'react-bootstrap'
 import { FavoritesHeader } from '../components/FavoritesHeader'
 import AlertComponent from '../components/ui/AlertComponent'
@@ -12,7 +12,13 @@ const FavoritesContainer: FC = () => {
   const { state, removeUser, clear } = useUserFavorites()
   const favoritesCount = state.favoriteList.length
 
-  const userListResponse = useFetchAllUsers(state.favoriteList)
+  const [request, setRequest] = useState<string[]>([])
+  // send request only on mount!
+  useEffect(() => {
+    setRequest(state.favoriteList)
+    // eslint-disable-next-line
+  }, [])
+  const userListResponse = useFetchAllUsers(request)
   const userList = userListResponse?.map(item => item?.data?.data)
 
   const windowSize = useWindowSize()
@@ -69,6 +75,7 @@ const FavoritesContainer: FC = () => {
           isMobile={isMobile}
           onRemoveFromFavorite={handleRemoveFromFavorite}
           onAddToFavorite={() => {}}
+          isUserCardFadeOutAnimated={true}
         />
       )}
     </Stack>
