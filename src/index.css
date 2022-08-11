@@ -134,3 +134,23 @@ svg {
   opacity: 0;
   transition: opacity 300ms;
 }
+
+/* fadeOutDown */
+.fadeOutDown-enter {
+  opacity: 1;
+}
+
+.fadeOutDown-enter-active {
+  opacity: 1;
+}
+
+.fadeOutDown-exit {
+  opacity: 1;
+  transform: translateY(0px);
+}
+
+.fadeOutDown-exit-active {
+  opacity: 0;
+  transform: translateY(150px);
+  transition: all 500ms ease;
+}

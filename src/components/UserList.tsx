@@ -13,6 +13,7 @@ type Props = {
   onRemoveFromFavorite: (userLogin: string) => void
   onChangeSelect?: (evt: ChangeEvent<HTMLSelectElement>) => void
   sortFilter?: string
+  isUserCardFadeOutAnimated?: boolean
 }
 export const UserList: FC<Props> = ({
   userList,
@@ -22,6 +23,7 @@ export const UserList: FC<Props> = ({
   isMobile,
   onAddToFavorite,
   onRemoveFromFavorite,
+  isUserCardFadeOutAnimated = false,
 }) => {
   const stackRef = useRef(null)
   const [isShow, setIsShow] = useState(false)
@@ -72,6 +74,7 @@ export const UserList: FC<Props> = ({
               isMobile={isMobile}
               onAddToFavorite={onAddToFavorite}
               onRemoveFromFavorite={onRemoveFromFavorite}
+              isUserCardFadeOutAnimated={isUserCardFadeOutAnimated}
             />
           ))}
         </Row>
