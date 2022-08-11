@@ -4,18 +4,20 @@
 
 ## Preview
 
-![search-user](preview-0_search-user.webp)
+![search-users](preview-0.webp)
 
-![user-profile](preview-1_user-profile.webp)
+![user-profile](preview-1.webp)
+
+![users-favorite-list](preview-2.webp)
 
 ## Tech Stack & main tools
 
 - TypeScript
-- React, Hooks
+- React, Hooks, Context
 - React-Router
 - React-Bootstrap
 - animations (React Transition Group)
-- React-Query
+- React-Query (🔥 Amazing tool)
 - axios
 - lodash
 - GitHub API
@@ -25,9 +27,9 @@
 - User Search
 - Sort Filters (user, repos)
 - User Profile routing
-- Responsive layout
+- User's Favorite List
 
-## Todo
+## ToDo
 
 - [x] add TypeScript
-- [ ] add User's Favorite List
+- [x] add User's Favorite List
